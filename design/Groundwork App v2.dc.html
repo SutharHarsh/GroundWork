@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E4E2DE;color:#000000;font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#8A5B00;text-decoration:underline;text-underline-offset:3px}
+a:hover{color:#000000}
+input::placeholder,textarea::placeholder{color:#8F8B84}
+*:focus-visible{outline:2px solid #000000;outline-offset:2px}
+::selection{background:#DDA20F;color:#000000}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#E4E2DE;color:#000000">
+
+<sc-if value="{{ is.login }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Sign in" style="min-height:100vh;position:relative;overflow:hidden">
+    <div style="display:{{ L.desk }};position:absolute;right:-10px;top:-70px;font-family:'Geist',sans-serif;font-weight:800;letter-spacing:-.06em;font-size:600px;line-height:1;letter-spacing:-.05em;color:#000000;pointer-events:none;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.04em">48</div>
+    <div style="position:absolute;left:56px;top:44px;display:flex;align-items:center;gap:10px"><span style="width:12px;height:12px;background:#DDA20F"></span><span style="font-size:15px;font-weight:600">Groundwork</span></div>
+    <form onSubmit="{{ login.submit }}" noValidate="{{ true }}" style="position:relative;margin:0;padding:150px clamp(20px,5vw,56px) 80px;width:460px;max-width:100%;box-sizing:content-box;display:flex;flex-direction:column;gap:30px">
+      <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:84px;line-height:.95;letter-spacing:-.03em">48 days.<br><em style="font-style:normal;font-weight:500;color:#77736C">Go.</em></h1>
+      <label style="display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #ADA9A2;padding-bottom:8px">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#66635D">Username</span>
+        <input value="{{ login.user }}" onChange="{{ login.onUser }}" autoComplete="username" placeholder="aditya" style="height:44px;border:0;background:transparent;font:inherit;font-size:24px;color:#000000;outline:none;padding:0;caret-color:#8A5B00">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:4px;border-bottom:2px solid #ADA9A2;padding-bottom:8px">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#66635D">Password</span>
+        <div style="display:flex;align-items:center">
+          <input type="{{ login.passType }}" value="{{ login.pass }}" onChange="{{ login.onPass }}" autoComplete="current-password" placeholder="••••••••" style="flex:1;min-width:0;height:44px;border:0;background:transparent;font:inherit;font-size:24px;color:#000000;outline:none;padding:0;caret-color:#8A5B00">
+          <button type="button" onClick="{{ login.toggle }}" style="border:0;background:transparent;font-family:'Geist Mono',monospace;font-size:11px;text-transform:uppercase;color:#66635D;cursor:pointer;padding:8px 0 8px 12px" style-hover="color:#8A5B00">{{ login.toggleLabel }}</button>
+        </div>
+      </label>
+      <sc-if value="{{ login.err }}" hint-placeholder-val="{{ false }}"><div role="alert" style="font-size:13px;line-height:1.45;color:#C8441C">{{ login.err }}</div></sc-if>
+      <div style="display:flex;align-items:center;gap:20px">
+        <button type="submit" disabled="{{ login.disabled }}" style="height:60px;padding:0 36px;border:0;border-radius:999px;background:#DDA20F;color:#000000;font-family:'Geist',sans-serif;font-size:18px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none" style-hover="background:#E8B53A">{{ login.btn }} ↗</button>
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">try password: groundwork</span>
+      </div>
+    </form>
+  </div>
+</sc-if>
+
+<sc-if value="{{ is.welcome }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Onboarding" style="min-height:100vh;display:flex;flex-direction:column;padding:44px clamp(20px,5vw,56px) 56px;box-sizing:border-box;gap:48px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:10px"><span style="width:12px;height:12px;background:#DDA20F"></span><span style="font-size:15px;font-weight:600">Groundwork</span></div><span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">SETUP · 1 OF 1</span></div>
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:820px">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#8A5B00">WELCOME, ADITYA · AI-NATIVE FRONTEND DEVELOPER</span>
+      <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:72px;line-height:1;letter-spacing:-.03em;text-wrap:pretty">How much time can you <em style="font-style:normal;font-weight:500;color:#77736C">really</em> give this?</h1>
+      <p style="margin:0;font-size:17px;line-height:1.55;color:#333333;max-width:600px">Be honest. The plan only schedules what fits, and the rest moves to continued learning in 2027. You can change this later in Settings.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border-top:1px solid #CFCCC6;border-bottom:1px solid #CFCCC6">
+      <div style="padding:32px 32px 32px 0;border-right:1px solid #CFCCC6;display:flex;flex-direction:column;gap:12px">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D">WEEKDAY HOURS · 35 DAYS</span>
+        <div style="display:flex;align-items:center;gap:24px">
+          <button type="button" onClick="{{ wl.wdDec }}" aria-label="Fewer weekday hours" style="width:52px;height:52px;border-radius:50%;border:1px solid #ADA9A2;background:transparent;color:#000000;font-size:22px;cursor:pointer" style-hover="border-color:#8A5B00">−</button>
+          <span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:clamp(88px,16vw,140px);line-height:.9;color:#000000;min-width:110px;text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.04em">{{ wl.wd }}</span>
+          <button type="button" onClick="{{ wl.wdInc }}" aria-label="More weekday hours" style="width:52px;height:52px;border-radius:50%;border:1px solid #ADA9A2;background:transparent;color:#000000;font-size:22px;cursor:pointer" style-hover="border-color:#8A5B00">+</button>
+        </div>
+      </div>
+      <div style="padding:32px;display:flex;flex-direction:column;gap:12px">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D">WEEKEND HOURS · 14 DAYS</span>
+        <div style="display:flex;align-items:center;gap:24px">
+          <button type="button" onClick="{{ wl.weDec }}" aria-label="Fewer weekend hours" style="width:52px;height:52px;border-radius:50%;border:1px solid #ADA9A2;background:transparent;color:#000000;font-size:22px;cursor:pointer" style-hover="border-color:#8A5B00">−</button>
+          <span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:clamp(88px,16vw,140px);line-height:.9;color:#000000;min-width:110px;text-align:center;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.04em">{{ wl.we }}</span>
+          <button type="button" onClick="{{ wl.weInc }}" aria-label="More weekend hours" style="width:52px;height:52px;border-radius:50%;border:1px solid #ADA9A2;background:transparent;color:#000000;font-size:22px;cursor:pointer" style-hover="border-color:#8A5B00">+</button>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:820px">
+      <div aria-live="polite" style="font-size:22px;line-height:1.4"><span style="color:#8A5B00">About {{ wl.fits }} of 342 topics</span> fit before December 31, roughly {{ wl.hours }} study hours. {{ wl.cont }} move to continued learning.</div>
+      <div style="height:10px;background:#D3D0CA;display:flex"><div style="width:{{ wl.pct }};background:#DDA20F"></div></div>
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">TIMEZONE DETECTED · {{ wl.tz }}</span>
+    </div>
+    <div><button type="button" onClick="{{ wl.go }}" style="height:60px;padding:0 36px;border:0;border-radius:999px;background:#DDA20F;color:#000000;font-family:'Geist',sans-serif;font-size:18px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none" style-hover="background:#E8B53A">Build my plan ↗</button></div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ inApp }}" hint-placeholder-val="{{ true }}">
+<div style="display:grid;grid-template-columns:{{ L.shell }};min-height:100vh">
+  <aside style="position:sticky;top:0;height:100vh;border-right:1px solid #CFCCC6;display:{{ L.rail }};flex-direction:column;padding:24px 14px;box-sizing:border-box;gap:22px">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 10px"><span style="width:12px;height:12px;background:#DDA20F"></span><span style="font-size:15px;font-weight:600">Groundwork</span></div>
+    <button type="button" onClick="{{ openCmd }}" style="display:flex;justify-content:space-between;align-items:center;height:38px;padding:0 10px;border:1px solid #CFCCC6;border-radius:10px;background:#EFEDEA;color:#66635D;font:inherit;font-size:13px;cursor:pointer" style-hover="border-color:#ADA9A2;color:#000000"><span>Jump to…</span><span style="font-family:'Geist Mono',monospace;font-size:11px">⌘K</span></button>
+    <nav aria-label="Main" style="display:flex;flex-direction:column;gap:2px">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="9">
+        <button type="button" onClick="{{ n.go }}" aria-current="{{ n.current }}" style="display:flex;justify-content:space-between;align-items:center;height:36px;padding:0 10px;border:0;border-radius:8px;background:{{ n.bg }};color:{{ n.fg }};font:inherit;font-size:14px;cursor:pointer;text-align:left" style-hover="color:#000000">
+          <span style="display:flex;align-items:center;gap:10px"><span style="width:6px;height:6px;border-radius:50%;background:{{ n.dot }}"></span>{{ n.label }}</span>
+          <span style="font-family:'Geist Mono',monospace;font-size:10px;color:#8F8B84">{{ n.key }}</span>
+        </button>
+      </sc-for>
+    </nav>
+    <div style="flex:1"></div>
+    <div style="padding:0 10px;display:flex;align-items:baseline;gap:10px">
+      <span style="font-family:'Geist',sans-serif;font-weight:800;letter-spacing:-.06em;font-size:56px;line-height:.9;color:#000000;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.04em">48</span>
+      <span style="font-family:'Geist Mono',monospace;font-size:10px;line-height:1.4;color:#66635D">DAYS TO<br>DEC 31</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:12px 10px 0;border-top:1px solid #CFCCC6">
+      <div style="width:34px;height:34px;border-radius:50%;background:#DDA20F;color:#000000;display:grid;place-items:center;font-size:12px;font-weight:600;flex:none">AS</div>
+      <div style="display:flex;flex-direction:column;min-width:0;flex:1"><span style="font-size:13px;font-weight:500">Aditya Sharma</span><span style="font-size:11px;color:#66635D">Frontend path</span></div>
+      <button type="button" onClick="{{ signOut }}" title="Sign out" style="border:0;background:transparent;color:#66635D;font-family:'Geist Mono',monospace;font-size:10px;cursor:pointer;padding:6px" style-hover="color:#C8441C">EXIT</button>
+    </div>
+  </aside>
+
+  <main style="min-width:0;padding:{{ L.pad }};box-sizing:border-box">
+    <sc-if value="{{ L.mobile }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px">
+        <div style="display:flex;align-items:center;gap:10px"><span style="width:12px;height:12px;border-radius:50%;background:#DDA20F"></span><span style="font-size:16px;font-weight:700;letter-spacing:-.01em">Groundwork</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">48D</span><button type="button" onClick="{{ openCmd }}" aria-label="Search" style="height:40px;padding:0 16px;border:1.5px solid #000000;border-radius:999px;background:transparent;color:#000000;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;flex:none">Search</button></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.overview }}" hint-placeholder-val="{{ true }}">
+      <div data-screen-label="Overview" style="display:flex;flex-direction:column;gap:48px;max-width:1240px">
+        <div style="display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:12px;color:#66635D"><span>{{ ov.dateLine }}</span><span>OVERVIEW</span></div>
+        <div style="display:grid;grid-template-columns:{{ L.hero }};gap:32px;align-items:end">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:clamp(48px,6vw,80px);line-height:.95;letter-spacing:-.03em">Good evening, <em style="font-style:normal;font-weight:500;color:#77736C">Aditya.</em></h1>
+            <div style="display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:#333333"><span>AI-Native Frontend Developer</span><span style="color:#8F8B84">/</span><span>Stage 02 · The web platform</span><span style="color:#8F8B84">/</span><span>Domain 6 · JavaScript language core</span></div>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:14px">
+            <span style="font-family:'Geist',sans-serif;font-weight:800;letter-spacing:-.06em;font-size:clamp(120px,14vw,200px);line-height:.78;letter-spacing:-.05em;color:#000000;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.04em">48</span>
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;line-height:1.5;color:#66635D;padding-bottom:6px">DAYS UNTIL<br>DECEMBER 31</span>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:{{ L.hero }};gap:24px;align-items:center;padding:32px 0;border-top:1px solid #DDA20F;border-bottom:1px solid #CFCCC6">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#8A5B00">NEXT MOVE</span>
+            <span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:clamp(36px,4vw,52px);line-height:1;letter-spacing:-.02em">{{ ov.next.name }}</span>
+            <span style="font-size:14px;color:#333333">{{ ov.next.meta }}</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button type="button" onClick="{{ ov.next.start }}" style="height:52px;padding:0 26px;border:0;border-radius:999px;background:#DDA20F;color:#000000;font-family:'Geist',sans-serif;font-size:16px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none" style-hover="background:#E8B53A">Start 25-min session</button>
+            <button type="button" onClick="{{ ov.next.open }}" style="height:52px;padding:0 22px;border:1px solid #ADA9A2;border-radius:999px;background:transparent;color:#000000;font:inherit;font-size:15px;cursor:pointer;white-space:nowrap;flex:none" style-hover="border-color:#8A5B00">Open workspace</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:{{ L.half }};gap:48px;align-items:start;padding-top:8px">
+          <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;max-width:440px;width:100%">
+            <span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">M</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">T</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">W</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">T</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#8A5B00;text-align:center;font-weight:500">F</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">S</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">S</span>
+            <sc-for list="{{ ov.runway }}" as="b" hint-placeholder-count="70">
+              <span title="{{ b.title }}" style="aspect-ratio:1;border-radius:50%;background:{{ b.bg }};border:1.5px solid {{ b.bd }};box-sizing:border-box"></span>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;flex-direction:column;gap:2px"><span style="font-weight:800;font-size:40px;line-height:1;letter-spacing:-.04em;text-transform:uppercase">The runway</span><span style="font-weight:500;font-size:40px;line-height:1;letter-spacing:-.04em;color:#77736C">Oct 26 – Dec 31</span></div>
+            <span style="font-size:16px;line-height:1.5;color:#333333;max-width:440px">{{ ov.track }}</span>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:#333333">
+              <span style="display:flex;gap:10px;align-items:center"><span style="width:14px;height:14px;border-radius:50%;background:#000000"></span>Done</span>
+              <span style="display:flex;gap:10px;align-items:center"><span style="width:14px;height:14px;border-radius:50%;background:#66635D"></span>Partly done</span>
+              <span style="display:flex;gap:10px;align-items:center"><span style="width:14px;height:14px;border-radius:50%;background:#C8441C"></span>Missed, moved forward</span>
+              <span style="display:flex;gap:10px;align-items:center"><span style="width:14px;height:14px;border-radius:50%;background:#DDA20F"></span>Today</span>
+              <span style="display:flex;gap:10px;align-items:center"><span style="width:14px;height:14px;border-radius:50%;background:#C9C6C0"></span>Scheduled study day</span>
+              <span style="display:flex;gap:10px;align-items:center"><span style="width:14px;height:14px;border-radius:50%;border:1.5px solid #333333;box-sizing:border-box"></span>Weekend project day</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:48px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:1px solid #CFCCC6"><span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:30px">Today</span><button type="button" onClick="{{ ov.goToday }}" style="border:0;background:transparent;color:#8A5B00;font-family:'Geist Mono',monospace;font-size:11px;cursor:pointer">OPEN PLANNER →</button></div>
+            <sc-for list="{{ ov.targets }}" as="t" hint-placeholder-count="5">
+              <div style="display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #DAD7D2">
+                <button type="button" onClick="{{ t.check }}" aria-label="Toggle done" style="width:20px;height:20px;border:1.5px solid {{ t.checkBd }};border-radius:6px;background:{{ t.checkBg }};color:#000000;font-size:12px;line-height:1;cursor:pointer;padding:0">{{ t.mark }}</button>
+                <div style="display:flex;flex-direction:column;gap:2px;min-width:0;opacity:{{ t.op }}"><span style="font-size:15px;text-decoration:{{ t.deco }}">{{ t.title }}</span><span style="font-size:12px;color:#66635D">{{ t.g }} · {{ t.meta }}</span></div>
+                <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">{{ t.min }}m</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="padding-bottom:12px;border-bottom:1px solid #CFCCC6"><span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:30px">Recent activity</span></div>
+            <sc-for list="{{ ov.acts }}" as="a" hint-placeholder-count="6">
+              <div style="display:grid;grid-template-columns:96px 14px minmax(0,1fr);gap:12px;padding:12px 0;align-items:start">
+                <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D;padding-top:3px">{{ a.when }}</span>
+                <span style="width:9px;height:9px;margin-top:5px;border-radius:50%;background:{{ a.dot }}"></span>
+                <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-family:'Geist Mono',monospace;color:#66635D">{{ a.kind }}</span><span style="font-size:15px">{{ a.text }}</span></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:1px solid #CFCCC6">
+          <sc-for list="{{ ov.ledger }}" as="l" hint-placeholder-count="8">
+            <div style="padding:18px 16px 18px 0;border-bottom:1px solid #CFCCC6;display:flex;flex-direction:column;gap:6px">
+              <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;color:#66635D">{{ l.k }}</span>
+              <span style="font-family:'Geist',sans-serif;font-weight:600;font-size:30px;letter-spacing:-.02em;color:{{ l.c }}">{{ l.v }}</span>
+              <span style="font-size:12px;color:#66635D">{{ l.s }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.today }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Today" style="display:flex;flex-direction:column;gap:36px;max-width:1000px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">TODAY · DAILY PLANNER</span>
+            <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.02em">Friday, <em style="font-style:normal;font-weight:500;color:#77736C">13 November</em></h1>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button type="button" style="width:40px;height:40px;border-radius:50%;border:1px solid #ADA9A2;background:transparent;color:#000000;cursor:pointer" aria-label="Previous day">←</button>
+            <button type="button" style="width:40px;height:40px;border-radius:50%;border:1px solid #ADA9A2;background:transparent;color:#000000;cursor:pointer" aria-label="Next day">→</button>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;font-size:14px;color:#333333"><span>{{ td.summary }}</span><span style="font-family:'Geist Mono',monospace;font-size:12px">CAPACITY 3H</span></div>
+          <div style="height:8px;background:#D3D0CA"><div style="height:100%;width:{{ td.capW }};background:#DDA20F"></div></div>
+        </div>
+        <sc-for list="{{ td.groups }}" as="g" hint-placeholder-count="5">
+          <div style="display:flex;flex-direction:column">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;border-bottom:1px solid #CFCCC6"><span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:28px">{{ g.name }}</span><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">{{ g.count }}</span></div>
+            <sc-if value="{{ g.isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:16px 0;font-size:14px;color:#66635D">{{ g.empty }}</div></sc-if>
+            <sc-for list="{{ g.tasks }}" as="t" hint-placeholder-count="2">
+              <div style="display:grid;grid-template-columns:{{ L.task }};gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #DAD7D2">
+                <button type="button" onClick="{{ t.check }}" aria-label="Toggle done" style="width:22px;height:22px;border:1.5px solid {{ t.checkBd }};border-radius:6px;background:{{ t.checkBg }};color:#000000;font-size:13px;line-height:1;cursor:pointer;padding:0">{{ t.mark }}</button>
+                <div style="display:flex;flex-direction:column;gap:3px;min-width:0;opacity:{{ t.op }}"><span style="font-size:16px;text-decoration:{{ t.deco }}">{{ t.title }}</span><span style="font-size:12px;color:#66635D">{{ t.meta }}</span></div>
+                <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">{{ t.min }} min</span>
+                <div style="display:flex;gap:6px;grid-column:{{ L.actCol }}">
+                  <button type="button" onClick="{{ t.start }}" style="height:32px;padding:0 14px;border:1px solid #ADA9A2;border-radius:999px;background:transparent;color:#000000;font:inherit;font-size:12px;cursor:pointer;white-space:nowrap;flex:none" style-hover="border-color:#8A5B00;color:#8A5B00">Start</button>
+                  <button type="button" onClick="{{ t.move }}" style="height:32px;padding:0 12px;border:0;border-radius:999px;background:transparent;color:#66635D;font:inherit;font-size:12px;cursor:pointer;white-space:nowrap;flex:none" style-hover="color:#000000">Move →</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+        <form onSubmit="{{ td.addTask }}" style="display:flex;gap:10px;align-items:center;border-bottom:2px solid #ADA9A2;padding-bottom:8px">
+          <span style="font-family:'Geist Mono',monospace;font-size:14px;color:#8A5B00">+</span>
+          <input value="{{ td.newTask }}" onChange="{{ td.onNew }}" aria-label="Add your own task" placeholder="Add your own task, or log off-plan study" style="flex:1;min-width:0;height:40px;border:0;background:transparent;font:inherit;font-size:16px;color:#000000;outline:none;padding:0">
+          <button type="submit" style="height:34px;padding:0 16px;border:0;border-radius:999px;background:#000000;color:#F6F5F3;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;flex:none">Add</button>
+        </form>
+        <sc-if value="{{ td.movedNote }}" hint-placeholder-val="{{ false }}"><div aria-live="polite" style="font-size:13px;color:#66635D">{{ td.movedNote }}</div></sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.roadmap }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Roadmap" style="display:grid;grid-template-columns:{{ L.side320 }};gap:40px;align-items:start;max-width:1320px">
+        <div style="display:flex;flex-direction:column;gap:32px;min-width:0">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">ROADMAP · AI-NATIVE FRONTEND DEVELOPER</span>
+            <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.02em">The whole syllabus, <em style="font-style:normal;font-weight:500;color:#77736C">one cell per topic.</em></h1>
+            <span style="font-size:14px;color:#333333">{{ rm.summary }}</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <sc-for list="{{ rm.filters }}" as="f" hint-placeholder-count="5">
+                <button type="button" onClick="{{ f.onClick }}" style="height:32px;padding:0 14px;border:1px solid {{ f.bd }};border-radius:999px;background:{{ f.bg }};color:{{ f.fg }};font:inherit;font-size:13px;cursor:pointer;white-space:nowrap;flex:none">{{ f.label }}</button>
+              </sc-for>
+            </div>
+            <input value="{{ rm.q }}" onChange="{{ rm.onQ }}" aria-label="Search topics" placeholder="Search topics…" style="width:240px;height:36px;padding:0 14px;border:1px solid #ADA9A2;border-radius:999px;background:transparent;font:inherit;font-size:14px;color:#000000;outline:none" style-focus="border-color:#8A5B00">
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:#333333">
+            <sc-for list="{{ rm.legend }}" as="l" hint-placeholder-count="8">
+              <span style="display:flex;gap:7px;align-items:center"><span style="width:12px;height:12px;background:{{ l.bg }};border:{{ l.bd }};border-radius:50%;box-shadow:{{ l.ring }};box-sizing:border-box"></span>{{ l.label }}</span>
+            </sc-for>
+          </div>
+          <sc-for list="{{ rm.stages }}" as="sg" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:{{ L.stage }};gap:20px">
+              <div style="display:flex;flex-direction:column;gap:6px;position:sticky;top:24px;align-self:start">
+                <span style="font-family:'Geist',sans-serif;font-weight:800;letter-spacing:-.06em;font-size:80px;line-height:.85;color:#000000;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.04em">{{ sg.n }}</span>
+                <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;color:#66635D;text-transform:uppercase">{{ sg.name }}</span>
+              </div>
+              <div style="display:flex;flex-direction:column;border-top:1px solid #CFCCC6">
+                <sc-for list="{{ sg.domains }}" as="d" hint-placeholder-count="3">
+                  <div style="border-bottom:1px solid #CFCCC6">
+                    <button type="button" onClick="{{ d.toggle }}" aria-expanded="{{ d.open }}" style="all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:{{ L.drow }};gap:14px;align-items:center;padding:16px 0">
+                      <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">{{ d.no }}</span>
+                      <span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font-size:16px;color:{{ d.nameColor }}">{{ d.name }}</span><span style="font-size:12px;color:#66635D">{{ d.meta }}</span>
+                        <sc-if value="{{ d.locked }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#C8441C">⊘ {{ d.lockText }}</span></sc-if>
+                      </span>
+                      <span style="display:{{ L.cells }};gap:4px;flex-wrap:wrap;justify-content:flex-end;max-width:220px">
+                        <sc-for list="{{ d.cells }}" as="c" hint-placeholder-count="8">
+                          <span title="{{ c.title }}" style="width:14px;height:14px;background:{{ c.bg }};border:{{ c.bd }};border-radius:50%;box-shadow:{{ c.ring }};outline:{{ c.outline }};outline-offset:2px;opacity:{{ c.op }};box-sizing:border-box"></span>
+                        </sc-for>
+                      </span>
+                      <span style="font-family:'Geist Mono',monospace;font-size:12px;text-align:right">{{ d.pct }}</span>
+                      <span style="font-family:'Geist Mono',monospace;font-size:16px;color:#66635D;text-align:center">{{ d.arrow }}</span>
+                    </button>
+                    <sc-if value="{{ d.open }}" hint-placeholder-val="{{ false }}">
+                      <div style="padding:0 0 16px 48px;display:flex;flex-direction:column">
+                        <sc-for list="{{ d.topics }}" as="t" hint-placeholder-count="4">
+                          <button type="button" onClick="{{ t.onClick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:14px;align-items:center;padding:9px 12px;border-radius:8px;background:{{ t.rowBg }}" style-hover="background:#F6F5F3">
+                            <span style="width:12px;height:12px;background:{{ t.bg }};border:{{ t.bd }};border-radius:50%;box-shadow:{{ t.ring }};box-sizing:border-box"></span>
+                            <span style="font-size:14px">{{ t.name }}</span>
+                            <span style="font-family:'Geist Mono',monospace;font-size:11px;color:{{ t.fg }}">{{ t.label }}</span>
+                          </button>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <div style="padding:18px 0 0 0;font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">{{ rm.hidden }}</div>
+        </div>
+
+        <aside style="position:{{ L.sticky }};top:36px;display:flex;flex-direction:column;gap:22px;padding:24px;border:1px solid #CFCCC6;border-radius:20px;background:#EFEDEA">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D">SELECTED TOPIC</span>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:34px;line-height:1.05">{{ rm.sel.name }}</span>
+            <span style="font-size:13px;color:#66635D">{{ rm.sel.dname }}</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <span style="width:14px;height:14px;background:{{ rm.sel.bg }};border:{{ rm.sel.bd }};border-radius:50%;box-shadow:{{ rm.sel.ring }};box-sizing:border-box"></span>
+            <span style="font-size:14px;color:{{ rm.sel.fg }}">{{ rm.sel.label }}</span>
+            <span style="font-size:12px;color:#66635D">· {{ rm.sel.bucket }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;color:#66635D">SET STATUS</span>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <sc-for list="{{ rm.sel.statusBtns }}" as="b" hint-placeholder-count="4">
+                <button type="button" onClick="{{ b.onClick }}" style="height:30px;padding:0 12px;border:1px solid #ADA9A2;border-radius:999px;background:{{ b.bg }};color:{{ b.fg }};font:inherit;font-size:12px;cursor:pointer;white-space:nowrap;flex:none">{{ b.label }}</button>
+              </sc-for>
+            </div>
+            <span style="font-size:12px;color:#66635D">Mastered is earned through an assessment, not set by hand.</span>
+          </div>
+          <sc-if value="{{ rm.sel.hasPre }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;color:#66635D">PREREQUISITES</span>
+              <sc-for list="{{ rm.sel.pres }}" as="p" hint-placeholder-count="1">
+                <div style="display:flex;justify-content:space-between;gap:10px;font-size:13px"><span style="color:#333333">{{ p.t }}</span><span style="font-family:'Geist Mono',monospace">{{ p.p }}</span></div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <button type="button" onClick="{{ rm.sel.openWs }}" style="height:50px;border:0;border-radius:999px;background:#DDA20F;color:#000000;font-family:'Geist',sans-serif;font-size:16px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none" style-hover="background:#E8B53A">Open workspace ↗</button>
+        </aside>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.topic }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Topic workspace" style="display:grid;grid-template-columns:{{ L.topic }};gap:40px;align-items:start;max-width:1400px">
+        <nav aria-label="Topics in this domain" style="position:{{ L.sticky }};top:36px;display:{{ L.rail }};flex-direction:column;gap:4px">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D;padding:0 10px 10px">{{ ws.dname }}</span>
+          <sc-for list="{{ ws.siblings }}" as="t" hint-placeholder-count="8">
+            <button type="button" onClick="{{ t.onClick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:12px minmax(0,1fr);gap:10px;align-items:center;padding:8px 10px;border-radius:8px;background:{{ t.rowBg }}" style-hover="background:#F6F5F3">
+              <span style="width:10px;height:10px;background:{{ t.bg }};border:{{ t.bd }};border-radius:50%;box-sizing:border-box"></span>
+              <span style="font-size:13px;line-height:1.3;color:{{ t.nameFg }}">{{ t.name }}</span>
+            </button>
+          </sc-for>
+        </nav>
+
+        <article style="display:flex;flex-direction:column;gap:44px;min-width:0">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">{{ ws.crumb }}</span>
+            <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:clamp(48px,5.5vw,76px);line-height:.95;letter-spacing:-.03em">{{ ws.name }}</h1>
+            <div style="display:flex;gap:10px;align-items:center;font-size:14px"><span style="width:14px;height:14px;background:{{ ws.bg }};border:{{ ws.bd }};border-radius:50%;box-shadow:{{ ws.ring }};box-sizing:border-box"></span><span style="color:{{ ws.fg }}">{{ ws.label }}</span><span style="color:#66635D">· {{ ws.bucket }}</span></div>
+          </div>
+          <section style="display:flex;flex-direction:column;gap:14px">
+            <h2 style="margin:0;font-family:'Geist Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.06em;color:#66635D">LEARNING OBJECTIVES</h2>
+            <sc-for list="{{ ws.objectives }}" as="o" hint-placeholder-count="3">
+              <p style="margin:0;font-family:'Geist',sans-serif;font-weight:500;font-size:22px;line-height:1.35;letter-spacing:-.01em;text-wrap:pretty">{{ o }}</p>
+            </sc-for>
+          </section>
+          <section style="display:flex;flex-direction:column">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px"><h2 style="margin:0;font-family:'Geist Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.06em;color:#66635D">CONCEPTS</h2><span style="font-family:'Geist Mono',monospace;font-size:12px">{{ ws.doneCount }}</span></div>
+            <div style="height:3px;background:#D3D0CA;margin-bottom:6px"><div style="height:100%;width:{{ ws.conW }};background:#DDA20F"></div></div>
+            <sc-for list="{{ ws.concepts }}" as="c" hint-placeholder-count="5">
+              <button type="button" onClick="{{ c.onClick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:24px 32px minmax(0,1fr);gap:12px;align-items:start;padding:16px 0;border-bottom:1px solid #DAD7D2">
+                <span style="width:20px;height:20px;border:1.5px solid {{ c.bd }};border-radius:6px;background:{{ c.bg }};color:#000000;font-size:12px;display:grid;place-items:center;box-sizing:border-box">{{ c.mark }}</span>
+                <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D;padding-top:2px">{{ c.n }}</span>
+                <span style="display:flex;flex-direction:column;gap:4px;opacity:{{ c.op }}"><span style="font-size:17px">{{ c.text }}</span><span style="font-size:14px;line-height:1.5;color:#333333">{{ c.sub }}</span></span>
+              </button>
+            </sc-for>
+            <button type="button" onClick="{{ ws.complete }}" style="margin-top:18px;align-self:flex-start;height:44px;padding:0 22px;border:1px solid {{ ws.completeBd }};border-radius:999px;background:{{ ws.completeBg }};color:{{ ws.completeFg }};font:inherit;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap;flex:none">{{ ws.completeLabel }}</button>
+          </section>
+          <section style="display:flex;flex-direction:column;gap:14px">
+            <h2 style="margin:0;font-family:'Geist Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.06em;color:#66635D">PRACTICE</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:#CFCCC6;border:1px solid #CFCCC6">
+              <sc-for list="{{ ws.exercises }}" as="x" hint-placeholder-count="4">
+                <div style="background:#E4E2DE;padding:20px;display:flex;flex-direction:column;gap:10px">
+                  <span style="display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:11px;color:#8A5B00"><span>{{ x.k }}</span><span style="color:#8F8B84">{{ x.n }}</span></span>
+                  <span style="font-size:15px;line-height:1.5">{{ x.t }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ ws.sample }}" hint-placeholder-val="{{ false }}">
+              <pre style="margin:0;padding:20px 22px;background:#EFEDEA;border:1px solid #CFCCC6;border-radius:14px;font-family:'Geist Mono',monospace;font-size:13px;line-height:1.7;color:#333333;overflow:auto"><span style="color:#8F8B84">// Break: what does this log, and why?</span>
+class Emitter {
+  constructor() { this.handlers = {}; }
+  on(type, fn) { (this.handlers[type] ||= []).push(fn); }
+  emit(type, data) { this.handlers[type].forEach(function (fn) { fn(data); }); }
+}
+const button = { label: 'Save', click() { console.log(this.label); } };
+emitter.on('save', button.click);   <span style="color:#C8441C">// → undefined</span></pre>
+            </sc-if>
+          </section>
+          <section style="display:flex;flex-direction:column;gap:12px">
+            <h2 style="margin:0;font-family:'Geist Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.06em;color:#66635D">NOTES</h2>
+            <textarea value="{{ ws.notes }}" onChange="{{ ws.onNotes }}" aria-label="Notes" placeholder="Write what you understood, in your own words…" style="min-height:140px;padding:18px;border:1px solid #CFCCC6;border-radius:14px;background:transparent;font-family:'Geist',sans-serif;font-size:17px;line-height:1.55;color:#000000;outline:none;resize:vertical" style-focus="border-color:#ADA9A2"></textarea>
+          </section>
+          <section style="display:flex;flex-direction:column;gap:14px">
+            <h2 style="margin:0;font-family:'Geist Mono',monospace;font-weight:400;font-size:11px;letter-spacing:.06em;color:#66635D">PROOF OF WORK</h2>
+            <sc-for list="{{ ws.proofs }}" as="p" hint-placeholder-count="0">
+              <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #DAD7D2;font-size:14px"><span><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#8A5B00;margin-right:10px">{{ p.type }}</span>{{ p.host }}</span><span style="color:#66635D">just now</span></div>
+            </sc-for>
+            <form onSubmit="{{ ws.attach }}" noValidate="{{ true }}" style="display:flex;gap:10px;align-items:center;border-bottom:2px solid #ADA9A2;padding-bottom:8px">
+              <input value="{{ ws.proofUrl }}" onChange="{{ ws.onProofUrl }}" aria-label="Proof link" placeholder="https://github.com/… or a live link" style="flex:1;min-width:0;height:40px;border:0;background:transparent;font:inherit;font-size:16px;color:#000000;outline:none;padding:0">
+              <button type="submit" style="height:34px;padding:0 16px;border:0;border-radius:999px;background:#000000;color:#F6F5F3;font:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;flex:none">Attach</button>
+            </form>
+            <sc-if value="{{ ws.proofErr }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:#C8441C">{{ ws.proofErr }}</span></sc-if>
+          </section>
+          <section style="display:flex;flex-direction:column;gap:18px;padding:28px;border:1px solid #DDA20F;border-radius:20px">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <h2 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:34px">Mastery assessment</h2>
+              <span style="font-size:14px;line-height:1.5;color:#333333">{{ ws.lockNote }}</span>
+            </div>
+            <div style="display:flex;flex-direction:column;opacity:{{ ws.assessOp }}">
+              <sc-for list="{{ ws.criteria }}" as="c" hint-placeholder-count="5">
+                <div style="display:grid;grid-template-columns:{{ L.crit }};gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #DAD7D2">
+                  <span style="font-size:15px">{{ c.name }}</span>
+                  <div style="display:flex;gap:6px">
+                    <sc-for list="{{ c.opts }}" as="o" hint-placeholder-count="4">
+                      <button type="button" onClick="{{ o.onClick }}" title="{{ o.title }}" disabled="{{ ws.lockedBtn }}" style="width:36px;height:36px;border:1px solid {{ o.bd }};border-radius:50%;background:{{ o.bg }};color:{{ o.fg }};font-family:'Geist Mono',monospace;font-size:13px;cursor:pointer">{{ o.label }}</button>
+                    </sc-for>
+                  </div>
+                  <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D;text-align:right">{{ c.level }}</span>
+                </div>
+              </sc-for>
+              <textarea value="{{ ws.expl }}" onChange="{{ ws.onExpl }}" aria-label="Written explanation" placeholder="Explain the topic as if teaching it. At least 80 characters." style="margin-top:16px;min-height:100px;padding:14px;border:1px solid #CFCCC6;border-radius:12px;background:transparent;font:inherit;font-size:15px;line-height:1.5;color:#000000;outline:none;resize:vertical" style-focus="border-color:#ADA9A2"></textarea>
+              <span style="margin-top:6px;font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">{{ ws.explCount }}</span>
+            </div>
+            <sc-if value="{{ ws.msg }}" hint-placeholder-val="{{ false }}"><div role="status" style="font-size:14px;line-height:1.5;color:{{ ws.msgColor }}">{{ ws.msg }}</div></sc-if>
+            <button type="button" onClick="{{ ws.assess }}" style="align-self:flex-start;height:52px;padding:0 28px;border:0;border-radius:999px;background:#DDA20F;color:#000000;font-family:'Geist',sans-serif;font-size:16px;font-weight:600;cursor:pointer;opacity:{{ ws.assessOp }};white-space:nowrap;flex:none">Submit assessment</button>
+          </section>
+          <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #CFCCC6">
+            <button type="button" onClick="{{ ws.prev }}" style="all:unset;cursor:pointer;padding:18px 0;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">← PREVIOUS</span><span style="font-size:15px">{{ ws.prevName }}</span></button>
+            <button type="button" onClick="{{ ws.next }}" style="all:unset;cursor:pointer;padding:18px 0;display:flex;flex-direction:column;gap:4px;text-align:right;align-items:flex-end"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">NEXT →</span><span style="font-size:15px">{{ ws.nextName }}</span></button>
+          </div>
+        </article>
+
+        <aside style="position:{{ L.sticky }};top:36px;display:flex;flex-direction:column;gap:26px">
+          <button type="button" onClick="{{ ws.startSession }}" style="height:52px;border:0;border-radius:999px;background:#DDA20F;color:#000000;font-family:'Geist',sans-serif;font-size:16px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none" style-hover="background:#E8B53A">Start timed session</button>
+          <div style="display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #CFCCC6;border-bottom:1px solid #CFCCC6">
+            <div style="padding:14px 0;display:flex;flex-direction:column;gap:4px;border-right:1px solid #CFCCC6"><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D">TIME LOGGED</span><span style="font-family:'Geist',sans-serif;font-size:24px;font-weight:600">{{ ws.time }}</span></div>
+            <div style="padding:14px 0 14px 14px;display:flex;flex-direction:column;gap:4px"><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D">SESSIONS</span><span style="font-size:14px;padding-top:6px">{{ ws.sessions }}</span></div>
+          </div>
+          <sc-if value="{{ ws.hasPre }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;color:#66635D">PREREQUISITES</span>
+              <sc-for list="{{ ws.pres }}" as="p" hint-placeholder-count="1">
+                <div style="display:flex;justify-content:space-between;gap:10px;font-size:13px"><span style="color:#333333">{{ p.t }}</span><span style="font-family:'Geist Mono',monospace">{{ p.p }}</span></div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;color:#66635D;padding-bottom:6px">RESOURCES · RANKED</span>
+            <sc-for list="{{ ws.resources }}" as="r" hint-placeholder-count="2">
+              <div style="display:flex;flex-direction:column;gap:3px;padding:10px 0;border-bottom:1px solid #DAD7D2"><span style="font-size:14px;line-height:1.35">{{ r.title }}</span><span style="font-size:12px;color:#66635D">{{ r.by }} · {{ r.cat }}</span></div>
+            </sc-for>
+            <sc-if value="{{ ws.noRes }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#66635D">No linked resources for this domain yet.</span></sc-if>
+          </div>
+        </aside>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.projects }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Projects" style="display:flex;flex-direction:column;gap:36px;max-width:1320px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">PROJECTS · BUILD, DON'T JUST LEARN</span>
+          <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.02em">Every weekend, <em style="font-style:normal;font-weight:500;color:#77736C">something real.</em></h1>
+        </div>
+        <div style="display:grid;grid-template-columns:{{ L.proj }};gap:40px;align-items:start">
+          <div style="display:flex;flex-direction:column;gap:28px">
+            <div style="display:flex;flex-direction:column">
+              <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D;padding-bottom:10px;border-bottom:1px solid #CFCCC6">WEEKEND PROJECTS · HARDER EACH WEEK</span>
+              <sc-for list="{{ pj.weeks }}" as="p" hint-placeholder-count="7">
+                <button type="button" onClick="{{ p.onClick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 12px;border-bottom:1px solid #DAD7D2;background:{{ p.rowBg }}" style-hover="background:#F6F5F3">
+                  <span style="font-family:'Geist',sans-serif;font-weight:800;font-size:20px">{{ p.tag }}</span>
+                  <span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font-size:15px">{{ p.title }}</span><span style="font-size:12px;color:#66635D">{{ p.when }} · {{ p.level }} <span style="color:#8A5B00">{{ p.mark }}</span></span></span>
+                  <span style="height:24px;padding:0 10px;border-radius:999px;border:{{ p.sBd }};background:{{ p.sBg }};color:{{ p.sFg }};font-size:11px;display:flex;align-items:center;white-space:nowrap">{{ p.status }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column">
+              <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D;padding-bottom:10px;border-bottom:1px solid #CFCCC6">CAPSTONES AND FINAL PORTFOLIO</span>
+              <sc-for list="{{ pj.caps }}" as="p" hint-placeholder-count="6">
+                <button type="button" onClick="{{ p.onClick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 12px;border-bottom:1px solid #DAD7D2;background:{{ p.rowBg }}" style-hover="background:#F6F5F3">
+                  <span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D">{{ p.tag }}</span>
+                  <span style="display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font-size:15px">{{ p.title }}</span><span style="font-size:12px;color:#66635D">{{ p.level }} · {{ p.when }}</span></span>
+                  <span style="height:24px;padding:0 10px;border-radius:999px;border:{{ p.sBd }};background:{{ p.sBg }};color:{{ p.sFg }};font-size:11px;display:flex;align-items:center;white-space:nowrap">{{ p.status }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:30px;padding:36px;border:1px solid #CFCCC6;border-radius:24px;background:#EFEDEA;position:{{ L.sticky }};top:36px">
+            <div style="display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap">
+              <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+                <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#8A5B00">{{ pj.d.tag }} · {{ pj.d.when }} · {{ pj.d.level }}</span>
+                <h2 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);line-height:1;letter-spacing:-.03em;overflow-wrap:anywhere">{{ pj.d.title }}</h2>
+              </div>
+              <sc-if value="{{ pj.d.canStart }}" hint-placeholder-val="{{ false }}">
+                <button type="button" onClick="{{ pj.d.start }}" style="height:48px;padding:0 24px;border:0;border-radius:999px;background:#DDA20F;color:#000000;font-family:'Geist',sans-serif;font-size:16px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none">Start project</button>
+              </sc-if>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px">
+              <sc-for list="{{ pj.d.pipe }}" as="p" hint-placeholder-count="5">
+                <div style="display:flex;flex-direction:column;gap:8px"><div style="height:4px;background:{{ p.bg }}"></div><span style="font-size:12px;color:{{ p.fg }}">{{ p.label }}</span></div>
+              </sc-for>
+            </div>
+            <p style="margin:0;font-family:'Geist',sans-serif;font-weight:500;font-size:22px;line-height:1.35;letter-spacing:-.01em5;text-wrap:pretty">{{ pj.d.problem }}</p>
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">{{ pj.d.frozen }}</span>
+            <sc-if value="{{ pj.d.hasTopics }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <sc-for list="{{ pj.d.topics }}" as="t" hint-placeholder-count="4"><span style="height:28px;padding:0 12px;border:1px solid #ADA9A2;border-radius:999px;font-size:12px;display:flex;align-items:center;color:#333333">{{ t }}</span></sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ pj.d.hasReq }}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px">
+                <div style="display:flex;flex-direction:column">
+                  <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D;padding-bottom:8px">REQUIREMENTS</span>
+                  <sc-for list="{{ pj.d.req }}" as="r" hint-placeholder-count="4">
+                    <div style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;padding:10px 0;border-bottom:1px solid #DAD7D2;font-size:14px;line-height:1.45"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#8F8B84;padding-top:2px">{{ r.n }}</span><span>{{ r.t }}</span></div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:24px">
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D">DELIVERABLES</span>
+                    <sc-for list="{{ pj.d.deliv }}" as="d" hint-placeholder-count="3"><span style="font-size:14px">→ {{ d }}</span></sc-for>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D">EVALUATION</span>
+                    <sc-for list="{{ pj.d.crit }}" as="c" hint-placeholder-count="3"><span style="font-size:14px;color:#333333">◇ {{ c }}</span></sc-for>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D">TO SUBMIT</span>
+                    <sc-for list="{{ pj.d.gate }}" as="g" hint-placeholder-count="5"><span style="font-size:13px;color:{{ g.c }}">{{ g.mark }} <span style="color:#333333">{{ g.t }}</span></span></sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.proof }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Proof of work" style="display:flex;flex-direction:column;gap:36px;max-width:1240px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">PROOF OF WORK · THE ARCHIVE</span>
+            <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.02em">Everything you've <em style="font-style:normal;font-weight:500;color:#77736C">actually made.</em></h1>
+            <span style="font-size:14px;color:#333333">{{ pf.count }}</span>
+          </div>
+          <button type="button" style="height:50px;padding:0 24px;border:0;border-radius:999px;background:#DDA20F;color:#000000;font-family:'Geist',sans-serif;font-size:16px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none" style-hover="background:#E8B53A">+ Add proof</button>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <sc-for list="{{ pf.chips }}" as="f" hint-placeholder-count="8">
+            <button type="button" onClick="{{ f.onClick }}" style="height:32px;padding:0 14px;border:1px solid {{ f.bd }};border-radius:999px;background:{{ f.bg }};color:{{ f.fg }};font:inherit;font-size:13px;cursor:pointer;white-space:nowrap;flex:none">{{ f.label }}</button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ pf.hasFeature }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:{{ L.half }};gap:40px;padding:32px 0;border-top:1px solid #DDA20F;border-bottom:1px solid #CFCCC6;align-items:center">
+            <div style="aspect-ratio:16/10;border:1px solid #CFCCC6;border-radius:20px;background:#EFEDEA;display:grid;place-items:center;position:relative;overflow:hidden">
+              <span style="font-family:'Geist',sans-serif;font-weight:800;letter-spacing:-.06em;font-size:160px;line-height:1;color:#000000;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.04em">{{ pf.feature.glyph }}</span>
+              <span style="position:absolute;left:18px;bottom:16px;font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">{{ pf.feature.sub }}</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#8A5B00">{{ pf.feature.n }} · {{ pf.feature.type }} · {{ pf.feature.date }}</span>
+              <h2 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:48px;line-height:1;letter-spacing:-.02em">{{ pf.feature.title }}</h2>
+              <span style="font-size:14px;color:#333333">{{ pf.feature.ctx }}</span>
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <sc-for list="{{ pf.feature.topics }}" as="t" hint-placeholder-count="3"><span style="height:28px;padding:0 12px;border:1px solid #ADA9A2;border-radius:999px;font-size:12px;display:flex;align-items:center;color:#333333">{{ t }}</span></sc-for>
+              </div>
+              <span style="font-family:'Geist Mono',monospace;font-size:12px;color:{{ pf.feature.sc }}">● {{ pf.feature.status }}</span>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ pf.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:40px 0;font-size:15px;color:#66635D">No evidence of this type yet.</div></sc-if>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ pf.items }}" as="p" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:{{ L.proofRow }};gap:20px;align-items:center;padding:20px 0;border-bottom:1px solid #CFCCC6">
+              <span style="display:{{ L.desk }};font-family:'Geist Mono',monospace;font-size:12px;color:#8F8B84">{{ p.n }}</span>
+              <span style="width:72px;height:56px;border:1px solid #CFCCC6;border-radius:12px;display:grid;place-items:center;font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:26px;color:#8A5B00">{{ p.glyph }}</span>
+              <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+                <span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:26px;line-height:1.1">{{ p.title }}</span>
+                <span style="font-size:12px;color:#66635D">{{ p.type }} · {{ p.sub }} · {{ p.ctx }}</span>
+                <span style="font-size:12px;color:#333333">Demonstrates: {{ p.topics }}</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;align-items:{{ L.metaAlign }};grid-column:{{ L.metaCol }}">
+                <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">{{ p.date }}</span>
+                <span style="font-family:'Geist Mono',monospace;font-size:11px;color:{{ p.sc }};white-space:nowrap">● {{ p.status }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.calendar }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Calendar" style="display:grid;grid-template-columns:{{ L.half }};gap:56px;align-items:start;max-width:1200px">
+        <div style="display:flex;flex-direction:column;gap:28px;max-width:500px;width:100%">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">CALENDAR · LIVE PLAN</span>
+            <div style="display:flex;gap:4px;padding:4px;border:1px solid #CFCCC6;border-radius:999px">
+              <sc-for list="{{ cal.tabs }}" as="t" hint-placeholder-count="2">
+                <button type="button" onClick="{{ t.onClick }}" style="height:32px;padding:0 16px;border:0;border-radius:999px;background:{{ t.bg }};color:{{ t.fg }};font:inherit;font-size:13px;cursor:pointer;white-space:nowrap;flex:none">{{ t.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <span style="font-weight:800;font-size:clamp(120px,16vw,190px);line-height:.8;letter-spacing:-.07em;margin-left:-.04em;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.04em">{{ cal.big }}</span>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:22px"><span style="font-weight:800;font-size:30px;letter-spacing:-.02em;text-transform:uppercase">{{ cal.title }}</span><span style="font-weight:700;font-size:30px;color:#66635D">{{ cal.dow }}</span></div>
+            <span style="font-weight:500;font-size:30px;line-height:1.1;color:#77736C">2026</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px">
+            <span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">M</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">T</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">W</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">T</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">F</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">S</span><span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D;text-align:center">S</span>
+            <sc-for list="{{ cal.cells }}" as="c" hint-placeholder-count="35">
+              <button type="button" onClick="{{ c.click }}" aria-label="{{ c.aria }}" style="aspect-ratio:1;border-radius:50%;background:{{ c.dotBg }};border:1.5px solid {{ c.dotBd }};box-shadow:{{ c.ring }};color:{{ c.dfg }};font-family:'Geist Mono',monospace;font-size:11px;cursor:pointer;padding:0;box-sizing:border-box">{{ c.d }}</button>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12px;color:#333333">
+            <span style="display:flex;gap:6px;align-items:center"><span style="width:10px;height:10px;border-radius:50%;background:#000000"></span>Done</span>
+            <span style="display:flex;gap:6px;align-items:center"><span style="width:10px;height:10px;border-radius:50%;background:#C8441C"></span>Moved forward</span>
+            <span style="display:flex;gap:6px;align-items:center"><span style="width:10px;height:10px;border-radius:50%;background:#DDA20F"></span>Today</span>
+            <span style="display:flex;gap:6px;align-items:center"><span style="width:10px;height:10px;border-radius:50%;background:#C9C6C0"></span>Study day</span>
+            <span style="display:flex;gap:6px;align-items:center"><span style="width:10px;height:10px;border-radius:50%;border:1.5px solid #333333;box-sizing:border-box"></span>Weekend project</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;padding-top:8px">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D;padding-bottom:10px">SELECTED DAY</span>
+          <span style="font-weight:800;font-size:44px;line-height:1;letter-spacing:-.04em;padding-bottom:18px;border-bottom:1.5px solid #000000">{{ cal.selLabel }}</span>
+          <sc-for list="{{ cal.detail }}" as="i" hint-placeholder-count="2">
+            <div style="display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid #CFCCC6;font-size:17px"><span style="width:12px;height:12px;border-radius:50%;background:{{ i.c }};flex:none"></span><span>{{ i.t }}</span></div>
+          </sc-for>
+          <sc-if value="{{ cal.noDetail }}" hint-placeholder-val="{{ false }}"><div style="padding:16px 0;font-size:15px;color:#66635D">Outside the plan window.</div></sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.resources }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Resources" style="display:grid;grid-template-columns:{{ L.res }};gap:48px;align-items:start;max-width:1240px">
+        <nav aria-label="Resource categories" style="position:{{ L.sticky }};top:36px;display:flex;flex-direction:column;gap:2px">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:#66635D;padding:0 0 12px">CATEGORIES</span>
+          <sc-for list="{{ rs.cats }}" as="c" hint-placeholder-count="10">
+            <button type="button" onClick="{{ c.onClick }}" style="all:unset;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;color:{{ c.fg }};font-size:14px" style-hover="color:#000000">
+              <span style="display:flex;align-items:center;gap:10px"><span style="width:6px;height:6px;border-radius:50%;background:{{ c.dot }}"></span>{{ c.label }}</span>
+              <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#8F8B84">{{ c.n }}</span>
+            </button>
+          </sc-for>
+        </nav>
+        <div style="display:flex;flex-direction:column;gap:28px;min-width:0">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">RESOURCES · 399 FROM THE SYLLABUS</span>
+            <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.02em">The <em style="font-style:normal;font-weight:500;color:#77736C">reading list.</em></h1>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;border-bottom:2px solid #ADA9A2;padding-bottom:8px">
+            <input value="{{ rs.q }}" onChange="{{ rs.onQ }}" aria-label="Search resources" placeholder="Search by title or author…" style="flex:1;min-width:0;height:44px;border:0;background:transparent;font:inherit;font-size:20px;color:#000000;outline:none;padding:0;caret-color:#8A5B00">
+            <span aria-live="polite" style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D;white-space:nowrap">{{ rs.count }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <sc-for list="{{ rs.rows }}" as="r" hint-placeholder-count="8">
+              <div style="display:grid;grid-template-columns:{{ L.resRow }};gap:20px;align-items:center;padding:18px 0;border-bottom:1px solid #CFCCC6">
+                <div style="display:flex;flex-direction:column;gap:4px;min-width:0;opacity:{{ r.titleOp }}"><span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:24px;line-height:1.15">{{ r.title }}</span><span style="font-size:13px;color:#66635D">{{ r.by }}</span></div>
+                <div style="display:flex;flex-direction:column;gap:3px;font-family:'Geist Mono',monospace;font-size:11px;color:#66635D"><span>{{ r.cat }}</span><span>{{ r.dom }}</span></div>
+                <div style="display:flex;gap:6px">
+                  <button type="button" onClick="{{ r.bm }}" style="height:32px;padding:0 12px;border:1px solid #ADA9A2;border-radius:999px;background:transparent;color:{{ r.bmFg }};font:inherit;font-size:12px;cursor:pointer;white-space:nowrap">{{ r.bmLabel }}</button>
+                  <button type="button" onClick="{{ r.read }}" style="height:32px;padding:0 12px;border:1px solid #ADA9A2;border-radius:999px;background:transparent;color:{{ r.readFg }};font:inherit;font-size:12px;cursor:pointer;white-space:nowrap">{{ r.readLabel }}</button>
+                </div>
+              </div>
+            </sc-for>
+            <sc-if value="{{ rs.empty }}" hint-placeholder-val="{{ false }}"><div style="padding:32px 0;font-size:15px;color:#66635D">Nothing matches. Try another category or search.</div></sc-if>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.progress }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Progress" style="display:flex;flex-direction:column;gap:48px;max-width:1240px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">PROGRESS · COMPUTED FROM LOGGED WORK</span>
+          <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.02em">How it's <em style="font-style:normal;font-weight:500;color:#77736C">actually going.</em></h1>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border-top:1px solid #CFCCC6">
+          <sc-for list="{{ pg.ledger }}" as="l" hint-placeholder-count="6">
+            <div style="padding:18px 16px 18px 0;border-bottom:1px solid #CFCCC6;display:flex;flex-direction:column;gap:6px">
+              <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.06em;color:#66635D">{{ l.k }}</span>
+              <span style="font-family:'Geist',sans-serif;font-weight:600;font-size:34px;letter-spacing:-.02em">{{ l.v }}</span>
+              <span style="font-size:12px;color:#66635D">{{ l.s }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px">
+          <section style="display:flex;flex-direction:column;gap:16px">
+            <h2 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:30px">Activity · last 12 weeks</h2>
+            <div style="display:flex;gap:4px">
+              <sc-for list="{{ pg.heat }}" as="w" hint-placeholder-count="12">
+                <div style="display:flex;flex-direction:column;gap:4px;flex:1;max-width:24px">
+                  <sc-for list="{{ w.days }}" as="d" hint-placeholder-count="7">
+                    <span title="{{ d.title }}" style="aspect-ratio:1;border-radius:3px;background:{{ d.bg }};border:{{ d.bd }};border-radius:50%;box-sizing:border-box"></span>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:11px;color:#66635D"><span>AUG 24</span><span>PLAN START · OCT 26</span><span>NOV 15</span></div>
+            <div style="display:flex;gap:6px;align-items:center;font-size:12px;color:#66635D">Less <span style="width:12px;height:12px;border-radius:50%;background:#D3D0CA"></span><span style="width:12px;height:12px;border-radius:50%;background:#ADA9A2"></span><span style="width:12px;height:12px;border-radius:50%;background:#66635D"></span><span style="width:12px;height:12px;border-radius:50%;background:#333333"></span><span style="width:12px;height:12px;border-radius:50%;background:#000000"></span> More</div>
+          </section>
+          <section style="display:flex;flex-direction:column;gap:16px">
+            <h2 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:30px">Topics completed vs planned pace</h2>
+            <svg viewBox="0 0 600 210" style="width:100%;height:auto;overflow:visible" role="img" aria-label="Topics completed against the planned pace">
+              <line x1="0" y1="200" x2="600" y2="200" stroke="#CFCCC6"></line>
+              <line x1="0" y1="200" x2="600" y2="10" stroke="#8F8B84" stroke-dasharray="4 5"></line>
+              <polyline points="{{ pg.actual }}" fill="none" stroke="#000000" stroke-width="2.5"></polyline>
+              <circle cx="{{ pg.lastX }}" cy="{{ pg.lastY }}" r="5" fill="#000000"></circle>
+            </svg>
+            <div style="display:flex;gap:18px;font-size:12px;color:#333333"><span style="display:flex;gap:6px;align-items:center"><span style="width:14px;height:2px;background:#000000"></span>Completed</span><span style="display:flex;gap:6px;align-items:center"><span style="width:14px;height:0;border-top:2px dashed #8F8B84"></span>Planned pace to Dec 31</span></div>
+          </section>
+          <section style="display:flex;flex-direction:column;gap:16px">
+            <h2 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:30px">Hours per week</h2>
+            <div style="display:flex;align-items:flex-end;gap:8px;height:180px">
+              <sc-for list="{{ pg.weeks }}" as="w" hint-placeholder-count="10">
+                <div style="flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px">
+                  <span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D">{{ w.v }}</span>
+                  <div style="width:100%;height:{{ w.hH }};background:{{ w.bg }};border:{{ w.bd }};border-radius:50%;box-sizing:border-box;border-radius:4px 4px 0 0"></div>
+                  <span style="font-family:'Geist Mono',monospace;font-size:10px;color:#66635D">{{ w.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <span style="font-size:12px;color:#66635D">Lime: logged. Grey: scheduled.</span>
+          </section>
+          <section style="display:flex;flex-direction:column;gap:12px">
+            <h2 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:30px">Completion by domain</h2>
+            <sc-for list="{{ pg.domains }}" as="d" hint-placeholder-count="10">
+              <div style="display:grid;grid-template-columns:minmax(0,1fr) 120px 40px;gap:12px;align-items:center;font-size:13px">
+                <span style="color:#333333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ d.name }}</span>
+                <div style="height:8px;background:#D3D0CA;display:flex"><div style="width:{{ d.mW }};background:#DDA20F"></div><div style="width:{{ d.cW }};background:#333333"></div></div>
+                <span style="font-family:'Geist Mono',monospace;font-size:11px;text-align:right">{{ d.v }}</span>
+              </div>
+            </sc-for>
+            <div style="display:flex;gap:18px;font-size:12px;color:#333333"><span style="display:flex;gap:6px;align-items:center"><span style="width:10px;height:10px;background:#DDA20F"></span>Mastered</span><span style="display:flex;gap:6px;align-items:center"><span style="width:10px;height:10px;background:#333333"></span>Completed</span></div>
+          </section>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ is.settings }}" hint-placeholder-val="{{ false }}">
+      <div data-screen-label="Settings" style="display:flex;flex-direction:column;gap:40px;max-width:880px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#66635D">SETTINGS</span>
+          <h1 style="margin:0;font-family:'Geist',sans-serif;font-weight:800;font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.02em">Your <em style="font-style:normal;font-weight:500;color:#77736C">availability.</em></h1>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));border-top:1px solid #CFCCC6;border-bottom:1px solid #CFCCC6">
+          <div style="padding:24px 24px 24px 0;display:flex;justify-content:space-between;align-items:center;border-right:1px solid #CFCCC6">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">WEEKDAY HOURS</span><span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:72px;line-height:.9;color:#000000;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.04em">{{ st.wd }}</span></div>
+            <div style="display:flex;gap:6px"><button type="button" onClick="{{ st.wdDec }}" aria-label="Fewer weekday hours" style="width:42px;height:42px;border-radius:50%;border:1px solid #ADA9A2;background:transparent;color:#000000;font-size:18px;cursor:pointer">−</button><button type="button" onClick="{{ st.wdInc }}" aria-label="More weekday hours" style="width:42px;height:42px;border-radius:50%;border:1px solid #ADA9A2;background:transparent;color:#000000;font-size:18px;cursor:pointer">+</button></div>
+          </div>
+          <div style="padding:24px;display:flex;justify-content:space-between;align-items:center">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">WEEKEND HOURS</span><span style="font-family:'Geist',sans-serif;font-weight:700;letter-spacing:-.02em;font-size:72px;line-height:.9;color:#000000;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:-.04em">{{ st.we }}</span></div>
+            <div style="display:flex;gap:6px"><button type="button" onClick="{{ st.weDec }}" aria-label="Fewer weekend hours" style="width:42px;height:42px;border-radius:50%;border:1px solid #ADA9A2;background:transparent;color:#000000;font-size:18px;cursor:pointer">−</button><button type="button" onClick="{{ st.weInc }}" aria-label="More weekend hours" style="width:42px;height:42px;border-radius:50%;border:1px solid #ADA9A2;background:transparent;color:#000000;font-size:18px;cursor:pointer">+</button></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">SCOPE SPLIT · 342 TOPICS</span>
+          <div style="height:12px;display:flex;background:#D3D0CA"><div style="width:{{ st.inW }};background:#DDA20F"></div><div style="width:{{ st.stW }};background:#8F8B84"></div></div>
+          <div style="display:flex;flex-wrap:wrap;gap:20px;font-size:13px;color:#333333"><span><span style="color:#8A5B00">{{ st.inN }}</span> in this plan</span><span>{{ st.stN }} stretch goals</span><span>{{ st.xN }} continued learning (2027)</span><span>≈{{ st.hours }} study hours</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:{{ L.set }};gap:20px;align-items:center;padding:20px 0;border-top:1px solid #CFCCC6">
+          <span style="font-size:15px">Timezone</span>
+          <select value="{{ st.tz }}" onChange="{{ st.onTz }}" aria-label="Timezone" style="height:44px;padding:0 14px;border:1px solid #ADA9A2;border-radius:12px;background:#EFEDEA;color:#000000;font:inherit;font-size:14px;max-width:300px">
+            <sc-for list="{{ st.tzs }}" as="t" hint-placeholder-count="4"><option value="{{ t.t }}">{{ t.t }}</option></sc-for>
+          </select>
+        </div>
+        <div style="display:grid;grid-template-columns:{{ L.set }};gap:20px;align-items:center;padding:20px 0;border-top:1px solid #CFCCC6">
+          <span style="font-size:15px">Theme</span>
+          <div style="display:flex;gap:4px;padding:4px;border:1px solid #CFCCC6;border-radius:999px;justify-self:start">
+            <sc-for list="{{ st.themes }}" as="t" hint-placeholder-count="3"><button type="button" onClick="{{ t.onClick }}" style="height:34px;padding:0 18px;border:0;border-radius:999px;background:{{ t.bg }};color:{{ t.fg }};font:inherit;font-size:13px;cursor:pointer;white-space:nowrap;flex:none">{{ t.label }}</button></sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:1px solid #CFCCC6">
+          <span style="font-size:14px;line-height:1.5;color:#333333">Changing hours or timezone rebuilds the plan. Unfinished work moves forward; started projects stay frozen.</span>
+          <button type="button" onClick="{{ st.rebuild }}" style="align-self:flex-start;height:52px;padding:0 28px;border:0;border-radius:999px;background:#DDA20F;color:#000000;font-family:'Geist',sans-serif;font-size:16px;font-weight:600;cursor:pointer;white-space:nowrap;flex:none" style-hover="background:#E8B53A">Rebuild plan now</button>
+          <sc-if value="{{ st.rebuilt }}" hint-placeholder-val="{{ false }}"><span role="status" style="font-size:13px;color:#8A5B00">{{ st.rebuilt }}</span></sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <!--MORE-->
+
+  </main>
+</div>
+
+<sc-if value="{{ L.mobile }}" hint-placeholder-val="{{ false }}">
+  <nav aria-label="Main" style="position:fixed;left:12px;right:12px;bottom:12px;height:64px;border-radius:999px;background:#000000;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;gap:4px;padding:0 8px;z-index:15;box-shadow:0 10px 30px rgba(0,0,0,.25)">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+      <button type="button" onClick="{{ t.go }}" style="height:48px;border:0;border-radius:999px;background:{{ t.bg }};color:{{ t.fg }};font:inherit;font-size:12px;font-weight:600;cursor:pointer;padding:0;white-space:nowrap;flex:none">{{ t.label }}</button>
+    </sc-for>
+  </nav>
+</sc-if>
+<sc-if value="{{ ss.on }}" hint-placeholder-val="{{ false }}">
+  <div role="status" style="position:fixed;left:50%;bottom:{{ L.ssBottom }};transform:translateX(-50%);display:flex;align-items:center;gap:18px;padding:10px 10px 10px 22px;border-radius:999px;background:#000000;color:#F6F5F3;box-shadow:0 12px 40px rgba(0,0,0,.5);z-index:20">
+    <span style="width:9px;height:9px;border-radius:50%;background:#C8441C"></span>
+    <span style="font-size:14px;font-weight:500;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ss.title }}</span>
+    <span style="font-family:'Geist Mono',monospace;font-size:15px;font-variant-numeric:tabular-nums">{{ ss.time }}</span>
+    <button type="button" onClick="{{ ss.stop }}" style="height:38px;padding:0 18px;border:0;border-radius:999px;background:#E4E2DE;color:#8A5B00;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap;flex:none">Stop and log</button>
+  </div>
+</sc-if>
+
+<sc-if value="{{ cmd.open }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ cmd.close }}" style="position:fixed;inset:0;background:rgba(228,226,222,.82);z-index:30;display:flex;justify-content:center;align-items:flex-start;padding-top:14vh">
+    <div onClick="{{ cmd.stop }}" role="dialog" aria-label="Command palette" style="width:600px;max-width:calc(100% - 32px);background:#F6F5F3;border:1px solid #ADA9A2;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)">
+      <form onSubmit="{{ cmd.submit }}" style="display:flex;align-items:center;gap:12px;padding:0 20px;border-bottom:1px solid #CFCCC6">
+        <span style="font-family:'Geist Mono',monospace;color:#8A5B00">⌘</span>
+        <input autoFocus="{{ true }}" value="{{ cmd.q }}" onChange="{{ cmd.onQ }}" aria-label="Search pages and topics" placeholder="Jump to a page or topic…" style="flex:1;height:60px;border:0;background:transparent;font:inherit;font-size:18px;color:#000000;outline:none;caret-color:#8A5B00">
+        <span style="font-family:'Geist Mono',monospace;font-size:10px;color:#8F8B84">ESC</span>
+      </form>
+      <div style="display:flex;flex-direction:column;padding:8px">
+        <sc-for list="{{ cmd.items }}" as="i" hint-placeholder-count="6">
+          <button type="button" onClick="{{ i.onClick }}" style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;font-size:15px" style-hover="background:#D3D0CA">
+            <span>{{ i.label }}</span><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#66635D">{{ i.kind }}</span>
+          </button>
+        </sc-for>
+        <sc-if value="{{ cmd.none }}" hint-placeholder-val="{{ false }}"><div style="padding:14px;font-size:14px;color:#66635D">No matches.</div></sc-if>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startPage&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;login&quot;,&quot;welcome&quot;,&quot;overview&quot;,&quot;today&quot;,&quot;roadmap&quot;,&quot;topic&quot;,&quot;projects&quot;,&quot;proof&quot;,&quot;calendar&quot;,&quot;resources&quot;,&quot;progress&quot;,&quot;settings&quot;],&quot;default&quot;:&quot;overview&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = {
+    page: null, lu: '', lp: '', lshow: false, lerr: '', lload: false,
+    wd: 3, we: 4, done: { k3: true }, moved: {}, custom: [], newTask: '', movedNote: '',
+    open: 'd6', sel: 't6-2', filter: 'all', q: '', ws: 't6-2', over: {}, checked: { 0: true, 1: true }, notes: '', proofUrl: '', proofErr: '', wsProofs: [],
+    ratings: [0, 0, 0, 0, 0], expl: '', assessMsg: '', assessOk: false,
+    proj: 'w3', pf: 'All', cal: 10, rc: 'All', rq: '', bm: { r1: true, r4: true }, rd: { r1: true, r3: true },
+    cmd: false, cq: '', session: null, now: Date.now(), rebuilt: '', theme: 'Light', tz: 'Asia/Kolkata', w: (typeof window !== 'undefined' ? window.innerWidth : 1280), calDay: null,
+    acts: [
+      { when: 'TODAY 08:40', kind: 'Session', text: '25 min · this and prototypes', dot: '#DDA20F' },
+      { when: 'NOV 12', kind: 'Practiced', text: 'Scope and closures', dot: '#DDA20F' },
+      { when: 'NOV 11', kind: 'Assessment · not yet', text: 'CORS flagged for revision', dot: '#C8441C' },
+      { when: 'NOV 11', kind: 'Proof', text: 'Written explanation: why CORS is enforced by the browser', dot: '#333333' },
+      { when: 'NOV 10', kind: 'Mastered', text: 'Shell navigation', dot: '#DDA20F' },
+      { when: 'NOV 8', kind: 'Submitted', text: 'W2 project · Network request investigation', dot: '#333333' },
+    ],
+  };
+  componentDidMount() {
+    this.key = e => {
+      const k = (e.key || '').toLowerCase();
+      if ((e.metaKey || e.ctrlKey) && k === 'k') { e.preventDefault(); this.setState(s => ({ cmd: !s.cmd, cq: '' })); return; }
+      if (k === 'escape') { this.setState({ cmd: false }); return; }
+      const tag = ((e.target && e.target.tagName) || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || e.metaKey || e.ctrlKey || e.altKey || !this.inApp()) return;
+      const p = this.pages().find(p => p[2] === e.key);
+      if (p) this.go(p[0]);
+    };
+    window.addEventListener('keydown', this.key);
+    this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR);
+    this.iv = setInterval(() => { if (this.state.session) this.setState({ now: Date.now() }); }, 1000);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); window.removeEventListener('keydown', this.key); clearInterval(this.iv); }
+  page() { return this.state.page || this.props.startPage || 'overview'; }
+  inApp() { const p = this.page(); return p !== 'login' && p !== 'welcome'; }
+  pages() { return [['overview', 'Overview', '1'], ['today', 'Today', '2'], ['roadmap', 'Roadmap', '3'], ['projects', 'Projects', '4'], ['proof', 'Proof of work', '5'], ['calendar', 'Calendar', '6'], ['resources', 'Resources', '7'], ['progress', 'Progress', '8'], ['settings', 'Settings', '9']]; }
+  go(p) { this.setState({ page: p, cmd: false, cq: '' }); try { window.scrollTo(0, 0); } catch (e) {} }
+  ST(c) {
+    return ({
+      M: { label: 'Mastered', bg: '#DDA20F', bd: '1.5px solid #DDA20F', ring: '0 0 0 2px #E4E2DE, 0 0 0 3.5px #DDA20F', fg: '#8A5B00' },
+      C: { label: 'Completed', bg: '#000000', bd: '1.5px solid #000000', ring: 'none', fg: '#000000' },
+      P: { label: 'Practiced', bg: 'transparent', bd: '3.5px solid #000000', ring: 'none', fg: '#000000' },
+      L: { label: 'Learning', bg: 'linear-gradient(to top, #000000 50%, transparent 50%)', bd: '1.5px solid #000000', ring: 'none', fg: '#000000' },
+      R: { label: 'Needs revision', bg: '#C8441C', bd: '1.5px solid #C8441C', ring: 'none', fg: '#C8441C' },
+      N: { label: 'Not started', bg: '#C9C6C0', bd: '1.5px solid #C9C6C0', ring: 'none', fg: '#333333' },
+      S: { label: 'Stretch goal', bg: 'transparent', bd: '1.5px dashed #8F8B84', ring: 'none', fg: '#66635D' },
+      X: { label: 'Continued learning (2027)', bg: 'transparent', bd: '1.5px solid #CFCCC6', ring: 'none', fg: '#66635D' },
+    })[c];
+  }
+  build() {
+    if (this._d) return this._d;
+    const RAW = [
+      ['01', 'Foundations', [
+        [1, 'How computers and the internet work', 'MMCCCCCC', ['Bits, bytes and encoding', 'Processes and memory', 'Operating system basics', 'The internet as a network of networks', 'IP addresses and routing', 'DNS resolution', 'TCP and UDP', 'TLS and HTTPS'], []],
+        [2, 'Terminal, Git and developer tooling', 'MCCCCPCC', ['Shell navigation', 'Pipes and redirection', 'Environment variables', 'Git internals: objects and refs', 'Branching and rebasing', 'Resolving conflicts', 'Package managers', 'Editor and linting setup'], []],
+        [3, 'HTTP, browsers and the network', 'CCCRCCP', ['HTTP methods and status codes', 'Headers and caching', 'Cookies and sessions', 'CORS', 'The browser rendering pipeline', 'DevTools network panel', 'HTTP/2 and HTTP/3'], [1]],
+      ]],
+      ['02', 'The web platform', [
+        [4, 'HTML semantics and accessibility', 'CCPLNNS', ['Document structure and landmarks', 'Forms and validation', 'Accessible names', 'ARIA: when not to use it', 'Keyboard interaction', 'Media and images', 'Data tables'], [1]],
+        [5, 'CSS layout, cascade and systems', 'CCCPNNSS', ['Cascade, specificity and layers', 'Box model', 'Flexbox', 'Grid', 'Responsive design and container queries', 'Custom properties and theming', 'Motion and reduced motion', 'Design tokens in CSS'], [1]],
+        [6, 'JavaScript language core', 'CPLNNNSX', ['Values, types and coercion', 'Scope and closures', 'this and prototypes', 'Modules', 'Iterators and generators', 'Error handling', 'Immutability patterns', 'Memory and garbage collection'], [2]],
+        [7, 'Async JavaScript and the event loop', 'NNNNSX', ['Callbacks and promises', 'async and await', 'The event loop', 'Microtasks and macrotasks', 'AbortController and cancellation', 'Streams'], [6]],
+      ]],
+      ['03', 'Types and quality', [
+        [8, 'TypeScript', 'NNNSXX', ['Type inference', 'Unions and narrowing', 'Generics', 'Utility types', 'Declaration files', 'Strict mode in practice'], [6]],
+        [9, 'Testing fundamentals', 'NNSXX', ['Unit tests', 'Testing Library', 'Mocking the network', 'End-to-end with Playwright', 'Visual regression'], [6]],
+      ]],
+      ['04', 'Frameworks', [
+        [12, 'React: fundamentals to internals', 'NNNNSSXXX', ['Components and props', 'State and re-rendering', 'useEffect and synchronisation', 'Refs and the DOM', 'Context', 'Reconciliation and keys', 'Suspense and transitions', 'Server components', 'The React compiler'], [5, 6]],
+        [13, 'State and data fetching', 'NNSXX', ['Server state and client state', 'Caching and revalidation', 'Optimistic updates', 'Forms and server actions', 'The URL as state'], [12]],
+        [14, 'Next.js and the App Router', 'NSXXX', ['Routing and layouts', 'Rendering strategies', 'Data fetching and caching', 'Middleware and proxies', 'Deployment'], [12]],
+      ]],
+      ['05', 'AI-native frontend', [
+        [24, 'LLM APIs and streaming interfaces', 'NNSXX', ['Prompting for product features', 'Streaming responses into the UI', 'Structured outputs', 'Token and latency budgets', 'Handling failure and refusal'], [7]],
+        [25, 'Agents, tools and evaluation', 'NSXX', ['Tool calling', 'Agent loops in the interface', 'Evaluating AI features', 'Human-in-the-loop review'], [24]],
+      ]],
+    ];
+    const domains = [];
+    RAW.forEach(([sn, sname, ds]) => ds.forEach(([no, name, codes, topics, pre]) => {
+      domains.push({ id: 'd' + no, no, name, stage: sn, stageName: sname, pre, topics: topics.map((t, i) => ({ id: `t${no}-${i}`, name: t, base: codes[i], dno: no, dname: name, did: 'd' + no })) });
+    }));
+    const start = new Date(2026, 9, 26);
+    const F = [1, 1, .8, 1, .6, 1, .5, 1, 0, 1, 1, 1, .7, 1, 1, 1, 1, 1];
+    const runway = [];
+    for (let i = 0; i < 67; i++) {
+      const dt = new Date(start); dt.setDate(start.getDate() + i);
+      const wk = dt.getDay() === 0 || dt.getDay() === 6;
+      const plan = wk ? 240 : 180;
+      const past = i < 18;
+      const done = past ? Math.round(plan * F[i]) : i === 18 ? 45 : 0;
+      runway.push({ i, dt, wk, plan, done, missed: past ? plan - done : 0, past, today: i === 18 });
+    }
+    this._d = { domains, runway, start };
+    return this._d;
+  }
+  code(t) { return this.state.over[t.id] || t.base; }
+  startSession(title) { this.setState({ session: { title, start: Date.now() }, now: Date.now() }); }
+  stopSession() {
+    const s = this.state.session; if (!s) return;
+    const m = Math.max(1, Math.round((Date.now() - s.start) / 60000));
+    this.setState(st => ({ session: null, acts: [{ when: 'JUST NOW', kind: 'Session', text: `${m} min · ${s.title}`, dot: '#DDA20F' }, ...st.acts] }));
+  }
+  fmtDate(dt) { return ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'][dt.getMonth()] + ' ' + dt.getDate(); }
+  renderVals() {
+    const s = this.state;
+    const page = this.page();
+    const { domains, runway, start } = this.build();
+    const all = domains.flatMap(d => d.topics);
+    const byId = Object.fromEntries(all.map(t => [t.id, t]));
+    const cnt = c => all.filter(t => this.code(t) === c).length;
+    const planned = all.filter(t => !'SX'.includes(this.code(t))).length;
+    const completed = cnt('M') + cnt('C');
+    const HIDDEN = 342 - all.length;
+    const is = {}; ['login', 'welcome', 'overview', 'today', 'roadmap', 'topic', 'projects', 'proof', 'calendar', 'resources', 'progress', 'settings'].forEach(p => is[p] = page === p);
+    const navActive = page === 'topic' ? 'roadmap' : page;
+    const nav = this.pages().map(([id, label, key]) => ({ label, key, go: () => this.go(id), current: navActive === id ? 'page' : undefined, bg: navActive === id ? '#DAD7D2' : 'transparent', fg: navActive === id ? '#000000' : '#66635D', dot: navActive === id ? '#DDA20F' : 'transparent' }));
+
+    // login
+    const login = {
+      user: s.lu, pass: s.lp, err: s.lerr, passType: s.lshow ? 'text' : 'password', toggleLabel: s.lshow ? 'Hide' : 'Show', btn: s.lload ? 'Signing in…' : 'Sign in', disabled: s.lload,
+      onUser: e => this.setState({ lu: e.target.value, lerr: '' }), onPass: e => this.setState({ lp: e.target.value, lerr: '' }), toggle: () => this.setState({ lshow: !s.lshow }),
+      submit: e => {
+        e.preventDefault();
+        if (!s.lu.trim() || !s.lp) return this.setState({ lerr: !s.lu.trim() && !s.lp ? 'Enter your username and password.' : !s.lu.trim() ? 'Enter your username.' : 'Enter your password.' });
+        this.setState({ lload: true });
+        setTimeout(() => { if (this.state.lp === 'groundwork') this.setState({ lload: false, lp: '', page: 'welcome' }); else this.setState({ lload: false, lerr: 'Incorrect username or password. 4 attempts left before a 15-minute lock.' }); }, 800);
+      },
+    };
+    // capacity
+    const hours = Math.round(35 * s.wd * 0.88 + 14 * s.we * 0.45);
+    const fits = Math.min(342, Math.round(hours / 1.75));
+    const step = (k, d, min, max) => () => this.setState(st => ({ [k]: Math.min(max, Math.max(min, st[k] + d)) }));
+    let tz = s.tz; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || s.tz; } catch (e) {}
+    const wl = { wd: s.wd, we: s.we, wdDec: step('wd', -0.5, 0.5, 10), wdInc: step('wd', 0.5, 0.5, 10), weDec: step('we', -0.5, 0, 12), weInc: step('we', 0.5, 0, 12), fits, cont: 342 - fits, hours, pct: (fits / 342 * 100).toFixed(1) + '%', tz, go: () => this.go('overview') };
+
+    // tasks
+    const BASE = [
+      { id: 'k1', g: 'Learning', title: 'this and prototypes', meta: 'Domain 6 · part 2 of 2', min: 60 },
+      { id: 'k2', g: 'Learning', title: 'Modules', meta: 'Domain 6 · part 1 of 1', min: 40 },
+      { id: 'k3', g: 'Revision', title: 'Review yesterday: Scope and closures', meta: 'Daily review', min: 20 },
+      { id: 'k4', g: 'Revision', title: 'CORS', meta: 'Weak criteria: debug problems, apply in a real project', min: 30 },
+      { id: 'k5', g: 'Assessments', title: 'Weekly mastery check', meta: 'Friday · this week’s topics', min: 30 },
+      { id: 'k6', g: 'Your tasks', title: 'Re-read closures notes before the mastery check', meta: 'Added by you', min: 15 },
+      ...s.custom,
+    ].filter(t => !s.moved[t.id]);
+    const mkTask = t => {
+      const d = !!s.done[t.id];
+      return { ...t, check: () => this.setState(st => ({ done: { ...st.done, [t.id]: !st.done[t.id] } })), checkBg: d ? '#DDA20F' : 'transparent', checkBd: d ? '#DDA20F' : '#8F8B84', mark: d ? '✓' : '', deco: d ? 'line-through' : 'none', op: d ? 0.5 : 1,
+        start: () => this.startSession(t.title), move: () => this.setState(st => ({ moved: { ...st.moved, [t.id]: true }, movedNote: `“${t.title}” moved to Saturday 14 November.` })) };
+    };
+    const tasks = BASE.map(mkTask);
+    const planMin = BASE.filter(t => t.g !== 'Your tasks').reduce((a, t) => a + t.min, 0);
+    const doneMin = BASE.filter(t => s.done[t.id]).reduce((a, t) => a + t.min, 0);
+    const groups = ['Learning', 'Revision', 'Assessments', 'Project work', 'Your tasks'].map(name => {
+      const ts = tasks.filter(t => t.g === name);
+      return { name, tasks: ts, count: ts.length ? `${ts.filter(t => s.done[t.id]).length} / ${ts.length}` : '—', isEmpty: !ts.length, empty: name === 'Project work' ? 'Weekend project starts tomorrow: W3 · Responsive layout system.' : 'Nothing here today.' };
+    });
+    const td = { groups, summary: `${tasks.filter(t => s.done[t.id]).length} of ${tasks.length} done · ${doneMin} of ${planMin} planned minutes`, capW: Math.min(100, doneMin / 180 * 100) + '%', newTask: s.newTask, onNew: e => this.setState({ newTask: e.target.value }), movedNote: s.movedNote,
+      addTask: e => { e.preventDefault(); const v = s.newTask.trim(); if (!v) return; this.setState(st => ({ newTask: '', custom: [...st.custom, { id: 'c' + Date.now(), g: 'Your tasks', title: v, meta: 'Added by you', min: 30 }] })); } };
+
+    // runway + overview
+    const last7 = runway.slice(11, 18); const r7 = last7.reduce((a, d) => a + d.done, 0) / last7.reduce((a, d) => a + d.plan, 0);
+    const movedH = Math.round(last7.reduce((a, d) => a + d.missed, 0) / 60);
+    const track = r7 >= .85 ? `On track. ${Math.round(r7 * 100)}% of scheduled time done in the last seven days.` : `Slightly behind. ${Math.round(r7 * 100)}% done in the last seven days; ${movedH}h moved forward.`;
+    const rw = [...runway.map(d => {
+      let bg = '#C9C6C0', bd = '#C9C6C0';
+      if (d.today) { bg = '#DDA20F'; bd = '#DDA20F'; }
+      else if (d.past) { if (d.done === 0) { bg = '#C8441C'; bd = '#C8441C'; } else if (d.done < d.plan * .75) { bg = '#66635D'; bd = '#66635D'; } else { bg = '#000000'; bd = '#000000'; } }
+      else if (d.wk) { bg = 'transparent'; bd = '#333333'; }
+      if (d.i === 66) { bg = 'transparent'; bd = '#DDA20F'; }
+      return { title: `${this.fmtDate(d.dt)} · ${d.past ? `${Math.round(d.done / 6) / 10}h done` : `${d.plan / 60}h scheduled`}`, bg, bd };
+    }), ...[0, 1, 2].map(() => ({ title: '', bg: 'transparent', bd: 'transparent' }))];
+    const streak = (() => { let n = 0; for (let i = 17; i >= 0 && runway[i].done > 0; i--) n++; return n; })();
+    const learnMin = runway.reduce((a, d) => a + d.done, 0);
+    const wk = runway.slice(14, 19); const wkPct = Math.round(wk.reduce((a, d) => a + d.done, 0) / wk.reduce((a, d) => a + d.plan, 0) * 100);
+    const ledger = [
+      { k: 'TOPICS COMPLETED', v: `${completed}/${planned}`, s: 'in this plan', c: '#000000' },
+      { k: 'MASTERED', v: cnt('M'), s: 'with evidence', c: '#8A5B00' },
+      { k: 'LEARNING NOW', v: cnt('L'), s: 'topics in progress', c: '#000000' },
+      { k: 'NEEDS REVISION', v: cnt('R'), s: 'scheduled again', c: '#C8441C' },
+      { k: 'THIS WEEK', v: wkPct + '%', s: 'of scheduled time', c: '#000000' },
+      { k: 'STREAK', v: streak + 'd', s: 'longest 9 days', c: '#8A5B00' },
+      { k: 'LEARNING TIME', v: Math.round(learnMin / 60) + 'h', s: 'since Oct 26', c: '#000000' },
+      { k: 'CONTINUED', v: cnt('X') + HIDDEN, s: 'topics for 2027', c: '#66635D' },
+    ];
+    const nt = byId['t6-2'];
+    const ov = {
+      dateLine: 'FRI 13 NOV 2026 · WEEK 3 OF 10', track, runway: rw, ledger, acts: s.acts, goToday: () => this.go('today'),
+      targets: tasks.slice(0, 5),
+      next: { name: nt.name, meta: `Domain 6 · ${this.ST(this.code(nt)).label} · ${Object.values(s.checked).filter(Boolean).length} of 5 concepts · about 60 min left`, start: () => this.startSession(nt.name), open: () => this.openWs('t6-2') },
+    };
+
+    const ss = { on: !!s.session, title: s.session ? s.session.title : '', time: s.session ? (() => { const sec = Math.floor((s.now - s.session.start) / 1000); return String(Math.floor(sec / 60)).padStart(2, '0') + ':' + String(sec % 60).padStart(2, '0'); })() : '', stop: () => this.stopSession() };
+
+    const mob = (s.w || 1280) < 760;
+    const L = { mobile: mob, shell: mob ? 'minmax(0,1fr)' : '228px minmax(0,1fr)', rail: mob ? 'none' : 'flex', desk: mob ? 'none' : 'block', pad: mob ? '18px 18px 140px' : '36px clamp(24px,4vw,56px) 140px',
+      hero: mob ? 'minmax(0,1fr)' : 'minmax(0,1fr) auto', half: mob ? 'minmax(0,1fr)' : 'minmax(0,1fr) minmax(0,1.1fr)', task: mob ? '28px minmax(0,1fr) auto' : '28px minmax(0,1fr) auto auto', actCol: mob ? '2 / -1' : 'auto',
+      side320: (s.w || 1280) < 1100 ? 'minmax(0,1fr)' : 'minmax(0,1fr) 320px', stage: mob ? 'minmax(0,1fr)' : '96px minmax(0,1fr)', drow: mob ? '28px minmax(0,1fr) 40px 16px' : '34px minmax(0,1fr) auto 48px 20px', cells: mob ? 'none' : 'flex',
+      topic: (s.w || 1280) < 1100 ? 'minmax(0,1fr)' : '220px minmax(0,1fr) 300px', crit: mob ? 'minmax(0,1fr) auto' : 'minmax(0,1fr) auto 110px', proj: (s.w || 1280) < 1340 ? 'minmax(0,1fr)' : 'minmax(0,380px) minmax(0,1fr)',
+      proofRow: mob ? '56px minmax(0,1fr)' : '44px 72px minmax(0,1fr) auto', metaCol: mob ? '1 / -1' : 'auto', metaAlign: mob ? 'flex-start' : 'flex-end', res: mob ? 'minmax(0,1fr)' : '220px minmax(0,1fr)', resRow: mob ? 'minmax(0,1fr)' : 'minmax(0,1fr) 140px auto',
+      set: mob ? 'minmax(0,1fr)' : '200px minmax(0,1fr)', sticky: (s.w || 1280) < 1100 ? 'static' : 'sticky', ssBottom: mob ? '88px' : '24px' };
+    const tabs = [...[['overview', 'Home'], ['today', 'Today'], ['roadmap', 'Map'], ['projects', 'Build']].map(([id, label]) => ({ label, go: () => this.go(id), bg: navActive === id ? '#DDA20F' : 'transparent', fg: navActive === id ? '#000000' : '#CFCCC6' })), { label: 'More', go: () => this.setState({ cmd: true, cq: '' }), bg: 'transparent', fg: '#CFCCC6' }];
+    const ext = this.more ? this.more({ s, domains, all, byId, runway, start, cnt, planned, completed, HIDDEN, fits, hours, tz, step, streak, learnMin }) : {};
+    return {
+      is, inApp: this.inApp(), nav, openCmd: () => this.setState({ cmd: true, cq: '' }), signOut: () => this.setState({ page: 'login', lu: '', lp: '' }),
+      login, wl, td, ov, ss, ...ext, L, tabs,
+    };
+  }
+  more(x) {
+    const { s, domains, all, byId, runway, start, cnt, planned, completed, HIDDEN, fits, hours, tz, step, streak, learnMin } = x;
+    const dById = Object.fromEntries(domains.map(d => [d.id, d]));
+    const pctDone = d => { const p = d.topics.filter(t => !'SX'.includes(this.code(t))); return p.length ? Math.round(p.filter(t => 'MC'.includes(this.code(t))).length / p.length * 100) : 0; };
+    const bucket = c => c === 'S' ? 'Stretch goal' : c === 'X' ? 'Continued learning (2027)' : 'In this plan';
+    const q = s.q.trim().toLowerCase();
+    const match = t => { const c = this.code(t), f = s.filter; const okF = f === 'all' || (f === 'in' && !'SX'.includes(c)) || (f === 'stretch' && c === 'S') || (f === '2027' && c === 'X') || (f === 'active' && 'LPR'.includes(c)); return okF && (!q || t.name.toLowerCase().includes(q)); };
+
+    // roadmap
+    const stagesMap = {};
+    domains.forEach(d => {
+      const pd = pctDone(d);
+      const lockBy = d.pre.map(n => dById['d' + n]).find(p => pctDone(p) < 50);
+      const open = s.open === d.id || (!!q && d.topics.some(t => t.name.toLowerCase().includes(q)));
+      const plannedN = d.topics.filter(t => !'SX'.includes(this.code(t))).length;
+      const row = {
+        no: String(d.no).padStart(2, '0'), name: d.name, pct: pd + '%', locked: !!lockBy, lockText: lockBy ? `Unlocks after Domain ${lockBy.no} (${pctDone(lockBy)}% done)` : '', open, arrow: open ? '−' : '+',
+        toggle: () => this.setState({ open: s.open === d.id ? null : d.id }), meta: `${plannedN} in plan · ${d.topics.length} topics`, nameColor: lockBy ? '#66635D' : '#000000',
+        cells: d.topics.map(t => { const st = this.ST(this.code(t)); return { ...st, title: `${t.name} · ${st.label}`, op: match(t) ? 1 : 0.18, outline: s.sel === t.id ? '2px solid #000000' : 'none', onClick: () => this.setState({ sel: t.id }) }; }),
+        topics: d.topics.filter(match).map(t => { const st = this.ST(this.code(t)); return { ...st, name: t.name, onClick: () => this.setState({ sel: t.id }), rowBg: s.sel === t.id ? '#DAD7D2' : 'transparent' }; }),
+      };
+      (stagesMap[d.stage] = stagesMap[d.stage] || { n: d.stage, name: d.stageName, domains: [] }).domains.push(row);
+    });
+    const sT = byId[s.sel], sc = this.code(sT), sst = this.ST(sc), sd = dById[sT.did];
+    const rm = {
+      stages: Object.values(stagesMap), q: s.q, onQ: e => this.setState({ q: e.target.value }),
+      filters: [['all', 'All'], ['in', 'In this plan'], ['active', 'In progress'], ['stretch', 'Stretch'], ['2027', '2027']].map(([k, l]) => ({ label: l, onClick: () => this.setState({ filter: k }), bg: s.filter === k ? '#000000' : 'transparent', fg: s.filter === k ? '#E4E2DE' : '#333333', bd: s.filter === k ? '#000000' : '#ADA9A2' })),
+      legend: 'MCPLRNSX'.split('').map(c => this.ST(c)),
+      hidden: `+ ${29 - domains.length} more domains · ${HIDDEN} topics · continued learning (2027)`,
+      summary: `${completed} completed · ${cnt('M')} mastered · ${planned} in plan · ${cnt('S')} stretch`,
+      sel: { name: sT.name, dname: `Domain ${sd.no} · ${sd.name}`, ...sst, bucket: bucket(sc), hasPre: sd.pre.length > 0, pres: sd.pre.map(n => ({ t: `Domain ${n} · ${dById['d' + n].name}`, p: pctDone(dById['d' + n]) + '%' })), openWs: () => this.openWs(sT.id),
+        statusBtns: ['N', 'L', 'P', 'C'].map(c => ({ label: this.ST(c).label, onClick: () => this.setState(st => ({ over: { ...st.over, [sT.id]: c } })), bg: sc === c ? '#000000' : 'transparent', fg: sc === c ? '#E4E2DE' : '#333333' })) },
+    };
+
+    // workspace
+    const wT = byId[s.ws], wc = this.code(wT), wst = this.ST(wc), wd = dById[wT.did];
+    const SAMPLE = s.ws === 't6-2';
+    const CON = SAMPLE ? [
+      ['How this is bound', 'Default, implicit, explicit and new binding, in order of precedence.'],
+      ['Arrow functions and lexical this', 'Arrows take this from the enclosing scope and cannot be rebound.'],
+      ['The prototype chain', 'Property lookup follows [[Prototype]] links until it finds a match or reaches null.'],
+      ['Object.create and constructor functions', 'Two ways to set an object’s prototype, and what new does step by step.'],
+      ['class syntax as sugar', 'What class compiles to, and where it differs: fields, private names, super.'],
+    ] : [[`${wT.name}: the mental model`, 'The core idea in your own words.'], ['Common mistakes', 'Where this usually goes wrong, and why.'], ['In a real codebase', 'How it shows up in production code.'], ['Trade-offs', 'When to reach for it and when not to.']];
+    const doneN = CON.filter((_, i) => s.checked[i]).length;
+    const canComplete = doneN === CON.length && !'MC'.includes(wc);
+    const CRIT = ['Explain the concept', 'Implement independently', 'Debug problems', 'Explain architectural decisions', 'Apply it in a real project'];
+    const LV = ['Not yet', 'With help', 'Independently', 'Could teach it'];
+    const canAssess = wc === 'C' || wc === 'R';
+    const idx = all.findIndex(t => t.id === s.ws);
+    const RES = [
+      ['r1', 'Inheritance and the prototype chain', 'MDN Web Docs', 'Documentation', 6],
+      ['r2', 'You Don’t Know JS Yet: Objects & Classes', 'Kyle Simpson', 'Books', 6],
+      ['r3', 'What the heck is the event loop anyway?', 'Philip Roberts · JSConf EU', 'YouTube and talks', 7],
+      ['r4', 'Learn CSS', 'web.dev', 'Courses', 5],
+      ['r5', 'Synchronizing with Effects', 'react.dev', 'Documentation', 12],
+      ['r6', 'High Performance Browser Networking', 'Ilya Grigorik', 'Books', 3],
+      ['r7', 'Total TypeScript: Beginner’s course', 'Matt Pocock', 'Courses', 8],
+      ['r8', 'Syntax', 'Wes Bos and Scott Tolinski', 'Podcasts', 0],
+      ['r9', 'An Interactive Guide to Flexbox', 'Josh W. Comeau', 'Blogs and articles', 5],
+      ['r10', 'Inclusive Components', 'Heydon Pickering', 'Books', 4],
+    ];
+    const ws = {
+      name: wT.name, crumb: `Stage ${wd.stage} / Domain ${wd.no} · ${wd.name}`, ...wst, bucket: bucket(wc), sample: SAMPLE,
+      objectives: SAMPLE ? ['Predict the value of this at any call site before running the code.', 'Trace a property lookup through the prototype chain.', 'Explain what class syntax changes and what it does not.'] : [`Explain ${wT.name} without notes.`, 'Use it correctly in a small working example.', 'Recognise and fix the most common mistake.'],
+      concepts: CON.map(([t, sub], i) => ({ text: t, sub, n: String(i + 1).padStart(2, '0'), onClick: () => this.setState(st => ({ checked: { ...st.checked, [i]: !st.checked[i] } })), bg: s.checked[i] ? '#DDA20F' : 'transparent', bd: s.checked[i] ? '#DDA20F' : '#8F8B84', mark: s.checked[i] ? '✓' : '', op: s.checked[i] ? .55 : 1 })),
+      doneCount: `${doneN} / ${CON.length}`, conW: (doneN / CON.length * 100) + '%',
+      complete: () => { if (canComplete) this.setState(st => ({ over: { ...st.over, [wT.id]: 'C' }, acts: [{ when: 'JUST NOW', kind: 'Completed', text: wT.name, dot: '#333333' }, ...st.acts] })); },
+      completeLabel: 'MC'.includes(wc) ? '✓ ' + wst.label : doneN === CON.length ? 'Mark completed' : `Tick every concept to complete · ${doneN}/${CON.length}`,
+      completeBg: canComplete ? '#000000' : 'transparent', completeFg: canComplete ? '#E4E2DE' : '#66635D', completeBd: canComplete ? '#000000' : '#ADA9A2',
+      exercises: [['Explain', SAMPLE ? 'Explain to a junior developer why a method loses this when it is passed as a callback.' : `Explain ${wT.name} to a junior developer in your own words.`], ['Build', SAMPLE ? 'Write a 15-line bind polyfill and use it in an event handler.' : `Build a small working example that uses ${wT.name}.`], ['Break', SAMPLE ? 'Find the context bugs in the event emitter below and fix them.' : `Introduce a realistic bug related to ${wT.name}, then debug it.`], ['Teach', SAMPLE ? 'Draw the prototype chain for a class instance and annotate every link.' : `Write a short note that would teach ${wT.name} to someone else.`]].map(([k, t], i) => ({ k, t, n: '0' + (i + 1) })),
+      notes: s.notes, onNotes: e => this.setState({ notes: e.target.value }),
+      proofUrl: s.proofUrl, proofErr: s.proofErr, onProofUrl: e => this.setState({ proofUrl: e.target.value, proofErr: '' }),
+      attach: e => { e.preventDefault(); const u = s.proofUrl.trim(); if (!/^https?:\/\/[^\s]+\.[^\s]+/.test(u)) return this.setState({ proofErr: 'Enter a full link, starting with https://' }); let host = u; try { host = new URL(u).hostname; } catch (er) {} this.setState(st => ({ wsProofs: [...st.wsProofs, { url: u, host, type: host.includes('github') ? 'GitHub' : host.includes('figma') ? 'Figma' : 'Live link' }], proofUrl: '' })); },
+      proofs: s.wsProofs, hasProofs: s.wsProofs.length > 0,
+      criteria: CRIT.map((name, i) => ({ name, level: s.ratings[i] ? LV[s.ratings[i] - 1] : '—', opts: LV.map((l, v) => ({ label: String(v + 1), title: l, onClick: () => this.setState(st => { const r = [...st.ratings]; r[i] = v + 1; return { ratings: r }; }), bg: s.ratings[i] === v + 1 ? (v >= 2 ? '#DDA20F' : '#C8441C') : 'transparent', fg: s.ratings[i] === v + 1 ? '#000000' : '#333333', bd: s.ratings[i] === v + 1 ? 'transparent' : '#ADA9A2' })) })),
+      expl: s.expl, onExpl: e => this.setState({ expl: e.target.value }), explCount: `${s.expl.trim().length} / 80 characters minimum`,
+      canAssess, lockNote: canAssess ? 'Rate yourself honestly. Mastered needs every criterion at 3 or higher, an explanation and linked proof.' : 'Complete the topic before assessing mastery.',
+      assessOp: canAssess ? 1 : .35, msg: s.assessMsg, msgColor: s.assessOk ? '#8A5B00' : '#C8441C',
+      assess: () => {
+        if (!canAssess) return;
+        if (s.ratings.some(r => !r)) return this.setState({ assessMsg: 'Rate every criterion first.', assessOk: false });
+        if (s.expl.trim().length < 80) return this.setState({ assessMsg: `Your explanation needs at least 80 characters (${s.expl.trim().length} so far).`, assessOk: false });
+        if (!s.wsProofs.length) return this.setState({ assessMsg: 'Link at least one proof of work before assessing.', assessOk: false });
+        const weak = CRIT.filter((_, i) => s.ratings[i] < 3);
+        if (!weak.length) this.setState(st => ({ over: { ...st.over, [wT.id]: 'M' }, assessMsg: 'Mastered. Every criterion at 3 or above, with evidence attached.', assessOk: true, acts: [{ when: 'JUST NOW', kind: 'Mastered', text: wT.name, dot: '#DDA20F' }, ...st.acts] }));
+        else this.setState(st => ({ over: { ...st.over, [wT.id]: 'R' }, assessMsg: `Not yet. Flagged for revision on: ${weak.join(', ').toLowerCase()}. A 30-minute revision task is scheduled for tomorrow.`, assessOk: false, acts: [{ when: 'JUST NOW', kind: 'Assessment · not yet', text: `${wT.name} flagged for revision`, dot: '#C8441C' }, ...st.acts] }));
+      },
+      siblings: wd.topics.map(t => { const st = this.ST(this.code(t)); return { ...st, name: t.name, onClick: () => this.openWs(t.id), rowBg: t.id === s.ws ? '#DAD7D2' : 'transparent', nameFg: t.id === s.ws ? '#000000' : '#333333' }; }),
+      dname: `Domain ${wd.no}`,
+      prevName: idx > 0 ? all[idx - 1].name : '—', nextName: idx < all.length - 1 ? all[idx + 1].name : '—',
+      prev: () => idx > 0 && this.openWs(all[idx - 1].id), next: () => idx < all.length - 1 && this.openWs(all[idx + 1].id),
+      time: SAMPLE ? '1h 10m' : '0m', sessions: SAMPLE ? '3 sessions' : 'No sessions yet',
+      resources: RES.filter(r => r[4] === wd.no).map(r => ({ title: r[1], by: r[2], cat: r[3] })),
+      noRes: !RES.some(r => r[4] === wd.no),
+      pres: wd.pre.map(n => ({ t: `Domain ${n} · ${dById['d' + n].name}`, p: pctDone(dById['d' + n]) + '%' })), hasPre: wd.pre.length > 0,
+      startSession: () => this.startSession(wT.name),
+    };
+
+    // projects
+    const PST = { 'Completed': ['#DDA20F', '#000000'], 'Under review': ['#333333', '#E4E2DE'], 'In progress': ['transparent', '#8A5B00'], 'Submitted': ['#333333', '#E4E2DE'], 'Planned': ['transparent', '#333333'], 'Continued learning': ['transparent', '#8F8B84'] };
+    const ps = s.projStatus || {};
+    const WEEKS = [
+      ['w1', 'W1', 'Oct 31 – Nov 1', 'Developer environment and shell toolkit', 'Beginner exercise', 'Completed'],
+      ['w2', 'W2', 'Nov 7 – 8', 'Network request investigation', 'Small practical implementation', 'Under review'],
+      ['w3', 'W3', 'Nov 14 – 15', 'Responsive layout system', 'Intermediate', 'Planned'],
+      ['w4', 'W4', 'Nov 21 – 22', 'Interactive JavaScript application', 'Advanced', 'Planned'],
+      ['w5', 'W5', 'Nov 28 – 29', 'React application', 'Real-world professional', 'Planned'],
+      ['w6', 'W6', 'Dec 5 – 6', 'Security hardening', 'Portfolio-quality', 'Planned'],
+      ['w7', 'W7', 'Dec 12 – 13', 'LLM-powered feature', 'Portfolio-quality', 'Planned'],
+    ];
+    const CAPS = [['c1', 'Stage 1 capstone', 'Personal CLI and dotfiles toolkit', 'Due Nov 22', 'In progress'], ['c2', 'Stage 2 capstone', 'Accessible component library', 'Due Dec 13', 'Planned'], ['c3', 'Stage 3 capstone', 'Typed, tested data dashboard', 'Due Dec 27', 'Planned'], ['c4', 'Stage 4 capstone', 'Full-stack Next.js product', '2027', 'Continued learning'], ['c5', 'Stage 5 capstone', 'AI-native product feature', '2027', 'Continued learning'], ['fp', 'Final portfolio', 'Portfolio and continuation plan', 'Due Dec 31', 'Planned']];
+    const DET = {
+      w1: { problem: 'Set up a reproducible developer environment and a small shell toolkit you will use every day.', topics: ['Shell navigation', 'Pipes and redirection', 'Environment variables', 'Editor and linting setup'], req: ['Dotfiles in a repository', 'Three shell scripts that save you time', 'Setup documented in a README'], deliv: ['GitHub repository', 'Short reflection'], crit: ['Setup runs on a clean machine', 'Scripts are documented and safe to run'] },
+      w2: { problem: 'Investigate how a real page loads: every request, header and cache decision on a cold and a warm load.', topics: ['HTTP methods and status codes', 'Headers and caching', 'DevTools network panel', 'Cookies and sessions'], req: ['Record a cold and a warm load of one production site', 'Annotate the ten slowest requests', 'Explain three caching headers you found', 'Propose two changes with expected impact'], deliv: ['Annotated screenshots', 'Live link to a small explorer', 'Reflection'], crit: ['Accurate reading of the waterfall', 'Correct explanation of caching headers', 'Proposals are measurable'] },
+      w3: { problem: 'Build a responsive layout system for a three-page marketing site that holds from 320px to 1600px without a pile of breakpoints.', topics: ['Flexbox', 'Grid', 'Box model', 'Responsive design and container queries', 'Accessible names'], req: ['Grid for page layout, Flexbox inside components', 'Container queries on at least two components', 'A fluid type scale using clamp()', 'Apply this week’s topics: Flexbox, Grid and the box model', 'From Domain 4: every interactive element has an accessible name', 'Written trade-offs: where you chose Grid over Flexbox, and why'], deliv: ['GitHub repository', 'Live link', '300-word write-up with trade-offs'], crit: ['Layout holds at 320, 768, 1280 and 1600px', 'No horizontal overflow at any width', 'Semantic landmarks and accessible names', 'Trade-offs are specific and justified'] },
+    };
+    const allP = [...WEEKS.map(w => ({ id: w[0], tag: w[1], when: w[2], title: w[3], level: w[4], status: ps[w[0]] || w[5], kind: 'Weekend project' })), ...CAPS.map(c => ({ id: c[0], tag: c[0] === 'fp' ? 'FINAL' : 'CAP', when: c[3], title: c[2], level: c[1], status: ps[c[0]] || c[4], kind: c[1] }))];
+    const pRow = p => ({ ...p, onClick: () => this.setState({ proj: p.id }), sBg: PST[p.status][0], sFg: PST[p.status][1], sBd: PST[p.status][0] === 'transparent' ? '1px solid ' + (p.status === 'In progress' ? '#8A5B00' : '#ADA9A2') : '1px solid transparent', rowBg: s.proj === p.id ? '#F6F5F3' : 'transparent', mark: p.id === 'w3' ? 'THIS WEEKEND' : '' });
+    const cur = allP.find(p => p.id === s.proj);
+    const det = DET[cur.id] || { problem: 'The brief is generated from the topics scheduled that week and keeps updating with the plan until you start it.', topics: [], req: [], deliv: [], crit: [] };
+    const PIPE = ['Planned', 'In progress', 'Submitted', 'Under review', 'Completed'];
+    const pi = PIPE.indexOf(cur.status);
+    const gateDone = pi >= 2;
+    const pj = {
+      weeks: allP.filter(p => p.kind === 'Weekend project').map(pRow), caps: allP.filter(p => p.kind !== 'Weekend project').map(pRow),
+      d: { ...cur, ...det, hasTopics: det.topics.length > 0, hasReq: det.req.length > 0, req: det.req.map((r, i) => ({ t: r, n: String(i + 1).padStart(2, '0') })),
+        pipe: PIPE.map((p, i) => ({ label: p, bg: i <= pi ? '#DDA20F' : '#CFCCC6', fg: i === pi ? '#000000' : '#66635D' })),
+        gate: ['Deliverable linked', 'Proof of work attached', 'Self-assessment on every criterion', 'Reflection written', 'Skills demonstrated'].map(t => ({ t, mark: gateDone ? '✓' : '○', c: gateDone ? '#DDA20F' : '#8F8B84' })),
+        canStart: cur.status === 'Planned', start: () => this.setState(st => ({ projStatus: { ...(st.projStatus || {}), [cur.id]: 'In progress' } })),
+        frozen: cur.status === 'Planned' ? 'Brief updates with the plan until you start it.' : 'Brief frozen when you started.' },
+    };
+
+    // proof
+    const PROOFS = [
+      ['p1', 'GitHub', '{ }', 'shell-kit', 'github.com/aditya-sharma/shell-kit', ['Shell navigation', 'Pipes and redirection', 'Environment variables'], 'W1 · Developer environment and shell toolkit', 'Nov 1', 'Accepted'],
+      ['p2', 'Live link', '↗', 'Network waterfall explorer', 'netlog-explorer.vercel.app', ['HTTP methods and status codes', 'Headers and caching', 'DevTools network panel'], 'W2 · Network request investigation', 'Nov 8', 'Submitted'],
+      ['p3', 'Screenshot', '▦', 'Cold load versus warm load, with caching headers', 'waterfall.png · 412 KB', ['Headers and caching'], 'W2 · Network request investigation', 'Nov 8', 'Submitted'],
+      ['p4', 'Written', '¶', 'Why CORS is enforced by the browser, not the server', '612 words', ['CORS'], 'Topic evidence', 'Nov 11', 'Needs changes'],
+      ['p5', 'Files', 'PDF', 'The TLS handshake, annotated', 'tls-notes.pdf · 1.8 MB', ['TLS and HTTPS'], 'Topic evidence', 'Oct 30', 'Accepted'],
+      ['p6', 'Video', '▶', 'Explaining DNS resolution in four minutes', 'dns-explainer.mp4 · 4:02', ['DNS resolution'], 'Topic evidence', 'Oct 29', 'Accepted'],
+      ['p7', 'Reflection', '~', 'Week 2: what slowed me down', '340 words', ['Cookies and sessions', 'CORS'], 'W2 · Network request investigation', 'Nov 8', 'Self-reviewed'],
+    ];
+    const pvis = PROOFS.filter(p => s.pf === 'All' || p[1] === s.pf);
+    const RV = { 'Accepted': '#8A5B00', 'Submitted': '#333333', 'Needs changes': '#C8441C', 'Self-reviewed': '#66635D' };
+    const pf = {
+      count: `${PROOFS.length} pieces of evidence · ${new Set(PROOFS.flatMap(p => p[5])).size} topics demonstrated`,
+      chips: ['All', 'GitHub', 'Live link', 'Screenshot', 'Written', 'Files', 'Video', 'Reflection'].map(c => ({ label: c, onClick: () => this.setState({ pf: c }), bg: s.pf === c ? '#000000' : 'transparent', fg: s.pf === c ? '#E4E2DE' : '#333333', bd: s.pf === c ? '#000000' : '#ADA9A2' })),
+      feature: pvis[0] ? { n: '01', type: pvis[0][1], glyph: pvis[0][2], title: pvis[0][3], sub: pvis[0][4], topics: pvis[0][5], ctx: pvis[0][6], date: pvis[0][7], status: pvis[0][8], sc: RV[pvis[0][8]] } : null,
+      hasFeature: pvis.length > 0, empty: pvis.length === 0,
+      items: pvis.slice(1).map((p, i) => ({ n: String(i + 2).padStart(2, '0'), type: p[1], glyph: p[2], title: p[3], sub: p[4], topics: p[5].join(' · '), ctx: p[6], date: p[7], status: p[8], sc: RV[p[8]] })),
+    };
+
+    // calendar
+    const mo = s.cal;
+    const first = new Date(2026, mo, 1); const offset = (first.getDay() + 6) % 7; const dim = new Date(2026, mo + 1, 0).getDate();
+    const cells = [];
+    for (let i = 0; i < offset; i++) cells.push({ d: '', items: [], numBg: 'transparent', numFg: '#66635D', cellBg: 'transparent', bd: 'transparent' });
+    const MS = { '10-22': '● Capstone 1 due', '11-13': '● Capstone 2 due', '11-27': '● Capstone 3 due', '11-31': '★ Deadline · final review' };
+    for (let d = 1; d <= dim; d++) {
+      const dt = new Date(2026, mo, d); const i = Math.round((dt - start) / 864e5); const r = runway[i];
+      const items = [];
+      if (r) {
+        if (r.past) items.push(r.done > 0 ? { t: `✓ Done · ${Math.round(r.done / 6) / 10}h`, c: '#8A5B00' } : { t: '→ Moved forward', c: '#C8441C' });
+        else if (r.wk) { const w = Math.floor((i - 5) / 7) + 1; items.push({ t: w <= 7 ? `▣ W${w} project` : '▣ Project work', c: '#000000' }); }
+        else items.push({ t: `Learn · ${r.today ? '1 of 6 done' : r.plan / 60 + 'h'}`, c: '#333333' });
+        if (dt.getDay() === 5 && !r.past) items.push({ t: '◆ Mastery check', c: '#333333' });
+      }
+      if (MS[`${mo}-${d}`]) items.push({ t: MS[`${mo}-${d}`], c: '#8A5B00' });
+      const today = mo === 10 && d === 13;
+      cells.push({ d, items, numBg: today ? '#DDA20F' : 'transparent', numFg: today ? '#E4E2DE' : (r && r.past ? '#66635D' : '#000000'), cellBg: today ? '#F6F5F3' : 'transparent', bd: '#CFCCC6' });
+    }
+    while (cells.length % 7) cells.push({ d: '', items: [], numBg: 'transparent', numFg: '#66635D', cellBg: 'transparent', bd: 'transparent' });
+    const calSel = s.calDay && s.calDay.m === mo ? s.calDay.d : (mo === 10 ? 13 : 31);
+    cells.forEach(c => {
+      if (!c.d) { Object.assign(c, { dotBg: 'transparent', dotBd: 'transparent', dfg: 'transparent', ring: 'none', aria: '', click: () => {} }); return; }
+      const dt = new Date(2026, mo, c.d); const i = Math.round((dt - start) / 864e5); const r = runway[i];
+      let bg = '#C9C6C0', bd = '#C9C6C0', fg = '#66635D';
+      if (!r) { bg = 'transparent'; bd = '#CFCCC6'; fg = '#8F8B84'; }
+      else if (r.today) { bg = '#DDA20F'; bd = '#DDA20F'; fg = '#000000'; }
+      else if (r.past) { if (r.done === 0) { bg = '#C8441C'; bd = '#C8441C'; fg = '#F6F5F3'; } else { bg = '#000000'; bd = '#000000'; fg = '#F6F5F3'; } }
+      else if (r.wk) { bg = 'transparent'; bd = '#333333'; fg = '#333333'; }
+      if (mo === 11 && c.d === 31) { bg = 'transparent'; bd = '#DDA20F'; fg = '#000000'; }
+      Object.assign(c, { dotBg: bg, dotBd: bd, dfg: fg, ring: c.d === calSel ? '0 0 0 3px #E4E2DE, 0 0 0 4.5px #000000' : 'none', aria: `${c.d} ${mo === 10 ? 'November' : 'December'}`, click: () => this.setState({ calDay: { m: mo, d: c.d } }) });
+    });
+    const selDate = new Date(2026, mo, calSel); const selCell = cells.find(c => c.d === calSel) || { items: [] };
+    const cal = { title: mo === 10 ? 'November' : 'December', big: calSel, dow: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][selDate.getDay()], selLabel: `${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][selDate.getDay()]} ${calSel} ${mo === 10 ? 'Nov' : 'Dec'}`, detail: selCell.items, noDetail: !selCell.items.length, cells, prev: () => this.setState({ cal: 10 }), next: () => this.setState({ cal: 11 }), tabs: [[10, 'Nov'], [11, 'Dec']].map(([m, l]) => ({ label: l, onClick: () => this.setState({ cal: m }), bg: s.cal === m ? '#000000' : 'transparent', fg: s.cal === m ? '#E4E2DE' : '#333333' })) };
+
+    // resources
+    const CATS = [['Documentation', 84], ['Courses', 41], ['Books', 28], ['YouTube and talks', 63], ['Blogs and articles', 92], ['Podcasts', 12], ['Research papers', 19], ['Tools and communities', 38], ['Industry experts', 22]];
+    const rq = s.rq.trim().toLowerCase();
+    const rrows = RES.filter(r => (s.rc === 'All' || r[3] === s.rc) && (!rq || (r[1] + r[2]).toLowerCase().includes(rq)));
+    const rs = {
+      q: s.rq, onQ: e => this.setState({ rq: e.target.value }),
+      cats: [['All', 399], ...CATS].map(([c, n]) => ({ label: c, n, onClick: () => this.setState({ rc: c }), fg: s.rc === c ? '#000000' : '#66635D', dot: s.rc === c ? '#DDA20F' : 'transparent' })),
+      rows: rrows.map(r => ({ title: r[1], by: r[2], cat: r[3], dom: r[4] ? `Domain ${r[4]}` : 'Cross-cutting', bmLabel: s.bm[r[0]] ? '★ Saved' : '☆ Save', bmFg: s.bm[r[0]] ? '#8A5B00' : '#66635D', readLabel: s.rd[r[0]] ? '✓ Read' : 'Mark read', readFg: s.rd[r[0]] ? '#000000' : '#66635D', titleOp: s.rd[r[0]] ? .6 : 1,
+        bm: () => this.setState(st => ({ bm: { ...st.bm, [r[0]]: !st.bm[r[0]] } })), read: () => this.setState(st => ({ rd: { ...st.rd, [r[0]]: !st.rd[r[0]] } })) })),
+      count: `${rrows.length} shown · ${Object.values(s.bm).filter(Boolean).length} saved · ${Object.values(s.rd).filter(Boolean).length} read`, empty: rrows.length === 0,
+    };
+
+    // progress
+    const lvl = m => m >= 180 ? '#000000' : m >= 120 ? '#333333' : m >= 60 ? '#66635D' : m > 0 ? '#ADA9A2' : '#D3D0CA';
+    const hStart = new Date(2026, 7, 24);
+    const heat = Array.from({ length: 12 }, (_, w) => ({ days: Array.from({ length: 7 }, (_, d) => {
+      const dt = new Date(hStart); dt.setDate(hStart.getDate() + w * 7 + d); const i = Math.round((dt - start) / 864e5); const r = runway[i];
+      if (i < 0) return { bg: '#EFEDEA', bd: '1px solid #EFEDEA', title: `${this.fmtDate(dt)} · before plan` };
+      if (i > 18) return { bg: 'transparent', bd: '1px solid #CFCCC6', title: `${this.fmtDate(dt)} · upcoming` };
+      return { bg: lvl(r.done), bd: '1px solid ' + lvl(r.done), title: `${this.fmtDate(dt)} · ${Math.round(r.done / 6) / 10}h` };
+    }) }));
+    const totalDone = runway.slice(0, 19).reduce((a, d) => a + d.done, 0);
+    let cum = 0; const pts = [];
+    for (let i = 0; i <= 18; i++) { cum += runway[i].done; pts.push(`${(i / 66 * 600).toFixed(1)},${(200 - completed * (cum / totalDone) / planned * 190).toFixed(1)}`); }
+    const weeks = Array.from({ length: 10 }, (_, w) => { const ds = runway.slice(w * 7, w * 7 + 7); const past = w < 2, curW = w === 2; const h = (past || curW) ? ds.reduce((a, d) => a + d.done, 0) / 60 : ds.reduce((a, d) => a + d.plan, 0) / 60; return { label: 'W' + (w + 1), v: Math.round(h) + 'h', hH: Math.min(100, h / 24 * 100) + '%', bg: past || curW ? '#DDA20F' : '#CFCCC6', bd: curW ? '1px solid #DDA20F' : 'none' }; });
+    const pg = {
+      ledger: [
+        { k: 'PLAN COMPLETION', v: Math.round(completed / planned * 100) + '%', s: `${completed} of ${planned} topics` },
+        { k: 'MASTERY RATE', v: Math.round(cnt('M') / Math.max(1, completed) * 100) + '%', s: `${cnt('M')} of ${completed} completed` },
+        { k: 'DEADLINE ELAPSED', v: Math.round(18 / 67 * 100) + '%', s: 'day 19 of 67' },
+        { k: 'LEARNING TIME', v: Math.round(learnMin / 60) + 'h', s: 'logged sessions' },
+        { k: 'REVISION BACKLOG', v: cnt('R'), s: 'topics flagged' },
+        { k: 'STREAK', v: streak + 'd', s: 'longest 9 days' },
+      ],
+      heat, actual: pts.join(' '), lastX: pts[pts.length - 1].split(',')[0], lastY: pts[pts.length - 1].split(',')[1], weeks,
+      domains: domains.filter(d => d.topics.some(t => !'SX'.includes(this.code(t)))).map(d => { const p = d.topics.filter(t => !'SX'.includes(this.code(t))); const m = p.filter(t => this.code(t) === 'M').length, c = p.filter(t => this.code(t) === 'C').length; return { name: `${String(d.no).padStart(2, '0')} · ${d.name}`, mW: (m / p.length * 100) + '%', cW: (c / p.length * 100) + '%', v: Math.round((m + c) / p.length * 100) + '%' }; }),
+    };
+
+    // settings
+    const stn = {
+      wd: s.wd, we: s.we, wdDec: step('wd', -0.5, 0.5, 10), wdInc: step('wd', 0.5, 0.5, 10), weDec: step('we', -0.5, 0, 12), weInc: step('we', 0.5, 0, 12), fits, hours,
+      tz: s.tz, onTz: e => this.setState({ tz: e.target.value }), tzs: ['Asia/Kolkata', 'Europe/London', 'America/New_York', 'Asia/Singapore'].map(t => ({ t })),
+      themes: ['Dark', 'Light', 'System'].map(t => ({ label: t, onClick: () => this.setState({ theme: t }), bg: s.theme === t ? '#000000' : 'transparent', fg: s.theme === t ? '#E4E2DE' : '#333333' })),
+      rebuild: () => { const n = new Date(); this.setState({ rebuilt: `Plan rebuilt at ${String(n.getHours()).padStart(2, '0')}:${String(n.getMinutes()).padStart(2, '0')}. ${fits} topics scheduled before December 31.` }); },
+      rebuilt: s.rebuilt, inW: (fits / 342 * 100) + '%', stW: (18 / 342 * 100) + '%', inN: fits, stN: 18, xN: 342 - fits - 18,
+    };
+
+    // command palette
+    const cq = s.cq.trim().toLowerCase();
+    const cmdItems = [...this.pages().map(([id, l, k]) => ({ label: l, kind: 'Page · ' + k, onClick: () => this.go(id) })), ...all.map(t => ({ label: t.name, kind: `Topic · Domain ${t.dno}`, onClick: () => this.openWs(t.id) }))].filter(i => !cq || i.label.toLowerCase().includes(cq)).slice(0, 8);
+    const cmd = { open: s.cmd, q: s.cq, onQ: e => this.setState({ cq: e.target.value }), items: cmdItems, none: cmdItems.length === 0, close: () => this.setState({ cmd: false }), stop: e => e.stopPropagation(),
+      submit: e => { e.preventDefault(); if (cmdItems[0]) cmdItems[0].onClick(); } };
+
+    return { rm, ws, pj, pf, cal, rs, pg, st: stn, cmd };
+  }
+  openWs(id) { this.setState(st => ({ ws: id, page: 'topic', checked: id === 't6-2' ? { 0: true, 1: true } : {}, ratings: [0, 0, 0, 0, 0], expl: '', assessMsg: '', wsProofs: id === st.ws ? st.wsProofs : [], proofErr: '', cmd: false })); try { window.scrollTo(0, 0); } catch (e) {} }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Groundwork design tokens — from "Groundwork App v2" (Claude Design).
+   Warm grey paper, black ink, one saffron accent. Geist for UI, Geist Mono for
+   small labels, Instrument Serif italic for the big numerals.
+   Light/dark follows the system unless the learner picks one (saved in localStorage).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  color-scheme: light;
+  --bg: #e4e2de;
+  --panel: #efedea;
+  --raised: #f6f5f3;
+  --hover: #dad7d2;
+  --line: #cfccc6;
+  --line-soft: #dad7d2;
+  --line-strong: #ada9a2;
+  --ink: #000000;
+  --ink-2: #333333;
+  --ink-3: #66635d;
+  --ink-4: #8f8b84;
+  --muted: #77736c;
+  --track: #d3d0ca;
+  --dot: #c9c6c0;
+  --accent: #dda20f;
+  --accent-hover: #e8b53a;
+  --accent-text: #8a5b00;
+  --danger: #c8441c;
+  --on-ink: #f6f5f3;
+  --focus: #000000;
+  --scrim: rgb(228 226 222 / 0.82);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #121211;
+    --panel: #1b1a18;
+    --raised: #23221f;
+    --hover: #2b2a26;
+    --line: #34322e;
+    --line-soft: #2a2926;
+    --line-strong: #4d4a44;
+    --ink: #f3f1ec;
+    --ink-2: #d2cfc8;
+    --ink-3: #a29e96;
+    --ink-4: #7a766f;
+    --muted: #8f8b84;
+    --track: #2c2b27;
+    --dot: #46433e;
+    --accent-text: #e8b53a;
+    --danger: #e2603a;
+    --on-ink: #121211;
+    --focus: #f3f1ec;
+    --scrim: rgb(18 18 17 / 0.82);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121211;
+  --panel: #1b1a18;
+  --raised: #23221f;
+  --hover: #2b2a26;
+  --line: #34322e;
+  --line-soft: #2a2926;
+  --line-strong: #4d4a44;
+  --ink: #f3f1ec;
+  --ink-2: #d2cfc8;
+  --ink-3: #a29e96;
+  --ink-4: #7a766f;
+  --muted: #8f8b84;
+  --track: #2c2b27;
+  --dot: #46433e;
+  --accent-text: #e8b53a;
+  --danger: #e2603a;
+  --on-ink: #121211;
+  --focus: #f3f1ec;
+  --scrim: rgb(18 18 17 / 0.82);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-raised: var(--raised);
+  --color-hover: var(--hover);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-4: var(--ink-4);
+  --color-muted: var(--muted);
+  --color-track: var(--track);
+  --color-dot: var(--dot);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-text: var(--accent-text);
+  --color-danger: var(--danger);
+  --color-on-ink: var(--on-ink);
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: #000;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Text fields show focus through their own border/underline, not a ring. */
+input:not([type="checkbox"]):not([type="radio"]):focus,
+input:not([type="checkbox"]):not([type="radio"]):focus-visible,
+textarea:focus,
+textarea:focus-visible,
+select:focus,
+select:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Browser autofill must not repaint fields with its own background. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ink);
+  -webkit-box-shadow: 0 0 0 1000px var(--bg) inset;
+  caret-color: var(--ink);
+  transition: background-color 9999s ease-out 0s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--ink-4);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Big italic numerals ("48", hours, dates) */
+.numeral {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+}
+
+/* Small monospace labels */
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Long-form syllabus text (rendered Markdown) */
+.prose-gw {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 70ch;
+}
+.prose-gw h1,
+.prose-gw h2,
+.prose-gw h3 {
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 1.6em 0 0.5em;
+}
+.prose-gw h1 { font-size: 1.6rem; }
+.prose-gw h2 { font-size: 1.3rem; }
+.prose-gw h3 { font-size: 1.05rem; }
+.prose-gw p { margin: 0.7em 0; }
+.prose-gw ul, .prose-gw ol { margin: 0.6em 0; padding-left: 1.3em; }
+.prose-gw ul { list-style: disc; }
+.prose-gw ol { list-style: decimal; }
+.prose-gw li { margin: 0.25em 0; }
+.prose-gw strong { color: var(--ink); font-weight: 600; }
+.prose-gw code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--panel);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.prose-gw pre {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 1rem;
+  border-radius: 14px;
+  overflow-x: auto;
+}
+.prose-gw pre code { background: none; padding: 0; }
+.prose-gw table {
+  font-size: 0.85rem;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+.prose-gw th, .prose-gw td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.45rem 0.75rem 0.45rem 0;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-gw th { color: var(--ink); font-weight: 600; }
+.prose-gw hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+.prose-gw a { color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+dialog::backdrop {
+  background: var(--scrim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes gw-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-rise {
+  animation: gw-rise 220ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes gw-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.animate-live {
+  animation: gw-pulse 1.6s ease-in-out infinite;
+}
